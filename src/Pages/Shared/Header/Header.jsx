@@ -69,7 +69,7 @@ const Header = () => {
                     </div>
                   </div>
                 </div>
-                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 lg:static lg:inset-auto sm:ml-6 sm:pr-0">
                   <button className="bg-[#006837] relative p-[5px] rounded-full border border-[#F7931E]">
                     <TiShoppingCart className="text-white text-3xl" />
                     <span className="absolute -bottom-2">

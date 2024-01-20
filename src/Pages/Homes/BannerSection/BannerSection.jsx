@@ -16,22 +16,22 @@ const BannerSection = () => {
     <div className="">
       <Carousel autoPlay interval={5000} emulateTouch={true} infiniteLoop={true} useKeyboardArrows={true} stopOnHover={true} thumbWidth={100} dynamicHeight={true}>
         <div>
-          <img className="xl:h-[700px]" src={bannerImg1} />
+          <img className="xl:h-[85vh]" src={bannerImg1} />
         </div>
         <div>
-          <img className="xl:h-[700px]" src={bannerImg2} />
+          <img className="xl:h-[85vh]" src={bannerImg2} />
         </div>
         <div>
-          <img className="xl:h-[700px]" src={bannerImg3} />
+          <img className="xl:h-[85vh]" src={bannerImg3} />
         </div>
         <div>
-          <img className="xl:h-[700px]" src={bannerImg4} />
+          <img className="xl:h-[85vh]" src={bannerImg4} />
         </div>
         <div>
-          <img className="xl:h-[700px]" src={bannerImg5} />
+          <img className="xl:h-[85vh]" src={bannerImg5} />
         </div>
         <div>
-          <img className="xl:h-[700px]" src={bannerImg6} />
+          <img className="xl:h-[85vh]" src={bannerImg6} />
         </div>
       </Carousel>
     </div>

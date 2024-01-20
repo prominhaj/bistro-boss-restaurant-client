@@ -43,7 +43,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="bg-black py-4 px-5">
-        <p className="text-center text-white text-md sm:text-xl font-medium font-['Inter'] leading-9">Copyright © Bistro Boss Restaurant {moment().years()}. All rights reserved.</p>
+        <p className="text-center text-white text-md sm:text-xl font-medium font-['Inter'] leading-9">Copyright © Bistro Boss Restaurant {moment().year()}. All rights reserved.</p>
       </div>
     </footer>
   );
