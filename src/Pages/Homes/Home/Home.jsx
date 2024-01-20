@@ -5,6 +5,7 @@ import BistroBossSection from '../BistroBossSection/BistroBossSection';
 import FromOurMenu from '../FromOurMenu/FromOurMenu';
 import CallUs from '../CallUs/CallUs';
 import ChefRecommends from '../ChefRecommends/ChefRecommends';
+import FromOurMenuSection from '../FromOurMenuSection/FromOurMenuSection';
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <FromOurMenu />
             <CallUs />
             <ChefRecommends />
+            <FromOurMenuSection />
         </>
     );
 };
