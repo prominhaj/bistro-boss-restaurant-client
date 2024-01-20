@@ -52,7 +52,7 @@ const orderItems = [
 
 const OrderOnline = () => {
   return (
-    <div className="container mx-auto py-[50px] px-5">
+    <section className="container mx-auto py-[50px] px-5">
       <SectionTitle subHading={"From 11:00am to 10:00pm"} hading={"ORDER ONLINE"}></SectionTitle>
       <div className="py-8">
         <Swiper
@@ -107,7 +107,7 @@ const OrderOnline = () => {
           ))}
         </Swiper>
       </div>
-    </div>
+    </section>
   );
 };
 

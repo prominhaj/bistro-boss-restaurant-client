@@ -4,16 +4,18 @@ import OrderOnline from '../OrderOnline/OrderOnline';
 import BistroBossSection from '../BistroBossSection/BistroBossSection';
 import FromOurMenu from '../FromOurMenu/FromOurMenu';
 import CallUs from '../CallUs/CallUs';
+import ChefRecommends from '../ChefRecommends/ChefRecommends';
 
 const Home = () => {
     return (
-        <div>
+        <>
             <BannerSection />
             <OrderOnline />
             <BistroBossSection />
             <FromOurMenu />
             <CallUs />
-        </div>
+            <ChefRecommends />
+        </>
     );
 };
 

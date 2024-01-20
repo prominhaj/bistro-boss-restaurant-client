@@ -10,8 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
+    "@mui/material": "^5.15.5",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.12",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.3",
     "moment": "^2.30.1",
@@ -22,6 +26,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.21.3",
     "sort-by": "^1.2.0",
+    "styled-components": "^6.1.8",
     "swiper": "^11.0.5"
   },
   "devDependencies": {

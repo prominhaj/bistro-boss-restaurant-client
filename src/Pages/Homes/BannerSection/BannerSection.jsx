@@ -39,7 +39,7 @@ const bannerItems = [
 
 const BannerSection = () => {
   return (
-    <div className="">
+    <section>
       <Carousel
         autoPlay
         interval={5000}
@@ -56,7 +56,7 @@ const BannerSection = () => {
           </div>
         ))}
       </Carousel>
-    </div>
+    </section>
   );
 };
 

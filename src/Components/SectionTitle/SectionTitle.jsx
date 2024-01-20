@@ -2,7 +2,7 @@ import React from "react";
 
 const SectionTitle = ({subHading, hading}) => {
   return (
-    <div className="max-w-[424px] mx-auto text-center space-y-3">
+    <section className="max-w-[424px] mx-auto text-center space-y-3">
       <h6 className="text-yellow-600 text-md sm:text-xl font-normal font-['Inter']">
         ---{subHading}---
       </h6>
@@ -11,7 +11,7 @@ const SectionTitle = ({subHading, hading}) => {
           {hading}
         </h2>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -4,7 +4,7 @@ import OurMenuCard from "../../../Components/OurMenuCard/OurMenuCard";
 const FromOurMenu = () => {
 
   return (
-    <div className="container mx-auto px-5 pt-8 pb-12">
+    <section className="container mx-auto px-5 pt-8 pb-12">
       <SectionTitle
         subHading={"Check it out"}
         hading={"FROM OUR MENU"}
@@ -22,7 +22,7 @@ const FromOurMenu = () => {
           View Full Menu
         </button>
       </div>
-    </div>
+    </section>
   );
 };
 
