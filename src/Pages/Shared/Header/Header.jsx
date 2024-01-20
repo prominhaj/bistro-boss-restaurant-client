@@ -21,7 +21,7 @@ const Header = () => {
   }
 
   return (
-    <div>
+    <header className="fixed z-50 w-full">
       <Disclosure as="nav" className="bg-neutral-900 bg-opacity-50 py-6">
         {({ open }) => (
           <>
@@ -39,8 +39,8 @@ const Header = () => {
                     )}
                   </Disclosure.Button>
                 </div>
-                <div className="flex flex-1 lg:flex-1-[0] items-center justify-center lg:justify-between">
-                  <div className="flex flex-shrink-0 items-center">
+                <div className="flex flex-1 items-center justify-center lg:justify-between">
+                  <div className="flex items-center">
                     <Link to="/">
                       <img
                         className="lg:max-w-[220px] max-w-[160px] h-auto"
@@ -168,7 +168,7 @@ const Header = () => {
           </>
         )}
       </Disclosure>
-    </div>
+    </header>
   );
 };
 

@@ -1,0 +1,14 @@
+@media only screen and (min-width: 660px) {
+  .thumbs-wrapper ul {
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .carousel .thumbs-wrapper {
+    margin: 5px !important;
+  }
+}
+.thumbs-wrapper ul li img {
+  height: 50px !important;
+}
