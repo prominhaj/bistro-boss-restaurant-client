@@ -27,33 +27,32 @@ const Testimonials = () => {
       />
       <div className="pt-10">
         <Swiper navigation={true} modules={[Navigation]}>
-          <SwiperSlide>
-            <div className="flex flex-col justify-center items-center gap-3 sm:gap-5">
-              <div className="mb-2 sm:mb-4">
-                <Rating
-                  value={4}
-                  readOnly
-                  cancel={false}
-                  pt={{
-                    onIcon: { className: "text-[#CD9002] sm:w-8 sm:h-8" },
-                    offIcon: { className: "text-[#A1A1A1] sm:w-8 sm:h-8" },
-                  }}
-                />
+          {reviews.map((review) => (
+            <SwiperSlide key={review._id}>
+              <div className="flex flex-col justify-center items-center gap-3 sm:gap-5">
+                <div className="mb-2 sm:mb-4">
+                  <Rating
+                    value={review.rating}
+                    readOnly
+                    cancel={false}
+                    pt={{
+                      onIcon: { className: "text-[#CD9002] sm:w-8 sm:h-8" },
+                      offIcon: { className: "text-[#A1A1A1] sm:w-8 sm:h-8" },
+                    }}
+                  />
+                </div>
+                <div className="sm:mb-2">
+                  <img className="w-12 md:w-auto" src={quoteLeft} alt="" />
+                </div>
+                <p className="text-center px-7 sm:px-10 text-neutral-700 text-base sm:text-xl font-normal font-['Inter'] leading-[35px]">
+                  {review.details}
+                </p>
+                <h2 className="text-center text-yellow-600 text-[25px] sm:text-[32px] font-medium font-['Inter']">
+                  {review.name}
+                </h2>
               </div>
-              <div className="sm:mb-2">
-                <img className="w-12 md:w-auto" src={quoteLeft} alt="" />
-              </div>
-              <p className="text-center px-7 sm:px-10 text-neutral-700 text-base sm:text-xl font-normal font-['Inter'] leading-[35px]">
-                Various version have evolved over the years, sometimes by
-                accident, sometimes on purpose (injected humour and the like).
-                It is a long established fact that a reader will be distracted
-                by the readable content of a page when looking at its layout.
-              </p>
-              <h2 className="text-center text-yellow-600 text-[25px] sm:text-[32px] font-medium font-['Inter']">
-                JANE DOE
-              </h2>
-            </div>
-          </SwiperSlide>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </section>
