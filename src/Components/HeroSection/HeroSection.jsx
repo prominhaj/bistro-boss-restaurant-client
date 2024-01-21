@@ -3,7 +3,7 @@ import React from "react";
 const HeroSection = ({ img, title, subTitle }) => {
   return (
     <section
-      className="bg-cover pt-[100px] pb-[50px] sm:pt-[200px] sm:pb-[100px] px-5"
+      className="bg-cover bg-fixed pt-[100px] pb-[50px] sm:pt-[200px] sm:pb-[100px] px-5"
       style={{ backgroundImage: `url(${img})` }}
     >
       <div className="bg-neutral-900 container mx-auto  bg-opacity-60 py-[100px]">
