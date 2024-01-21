@@ -20,7 +20,7 @@ const Testimonials = () => {
 
   console.log(reviews);
   return (
-    <section className="container mx-auto px-5 py-16">
+    <section className="container mx-auto px-5 py-10 sm:py-20">
       <SectionTitle
         subHading={"What Our Clients Say"}
         hading={"TESTIMONIALS"}
