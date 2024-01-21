@@ -4,7 +4,11 @@ import bgImg from "../../../assets/menu/banner3.jpg";
 import MenuCover from "../MenuCover/MenuCover";
 import OurMenuCard from "../../../Components/OurMenuCard/OurMenuCard";
 import MoreButton from "../../../Components/SeeMoreButton/MoreButton";
-import dessertBg from '../../../assets/menu/dessert-bg.jpeg';
+import dessertBg from "../../../assets/menu/dessert-bg.jpeg";
+import pizzaBg from "../../../assets/menu/pizza-bg.jpg";
+import saladsBg from "../../../assets/menu/salad-bg.jpg";
+import soupsBg from "../../../assets/menu/soup-bg.jpg";
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 
 const Menu = () => {
   return (
@@ -16,7 +20,8 @@ const Menu = () => {
       />
       <div className="container mx-auto px-5">
         <section className="py-[50px] sm:pt-[100px] sm:pb-12">
-          <div className="grid md:grid-cols-2 gap-6 pb-8">
+          <SectionTitle subHading="Don't miss" hading="TODAY'S OFFER" />
+          <div className="grid md:grid-cols-2 gap-6 py-6 sm:py-10">
             <OurMenuCard />
             <OurMenuCard />
             <OurMenuCard />
@@ -25,9 +30,78 @@ const Menu = () => {
           <MoreButton text="ORDER YOUR FAVOURITE FOOD" />
         </section>
       </div>
-        <section>
-          <MenuCover img={dessertBg} title="DESSERTS" description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." />
-        </section>
+      <section className="pb-8">
+        <MenuCover
+          img={dessertBg}
+          title="DESSERTS"
+          description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        />
+        <div className="container mx-auto px-5">
+          <div className="grid md:grid-cols-2 gap-6 py-6 sm:py-10">
+            <OurMenuCard />
+            <OurMenuCard />
+            <OurMenuCard />
+            <OurMenuCard />
+            <OurMenuCard />
+            <OurMenuCard />
+          </div>
+          <MoreButton text="ORDER YOUR FAVOURITE FOOD" />
+        </div>
+      </section>
+      <section className="pb-8">
+        <MenuCover
+          img={pizzaBg}
+          title="PIZZA"
+          description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        />
+        <div className="container mx-auto px-5">
+          <div className="grid md:grid-cols-2 gap-6 py-6 sm:py-10">
+            <OurMenuCard />
+            <OurMenuCard />
+            <OurMenuCard />
+            <OurMenuCard />
+            <OurMenuCard />
+            <OurMenuCard />
+          </div>
+          <MoreButton text="ORDER YOUR FAVOURITE FOOD" />
+        </div>
+      </section>
+      <section className="pb-8">
+        <MenuCover
+          img={saladsBg}
+          title="SALADS"
+          description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        />
+        <div className="container mx-auto px-5">
+          <div className="grid md:grid-cols-2 gap-6 py-6 sm:py-10">
+            <OurMenuCard />
+            <OurMenuCard />
+            <OurMenuCard />
+            <OurMenuCard />
+            <OurMenuCard />
+            <OurMenuCard />
+          </div>
+          <MoreButton text="ORDER YOUR FAVOURITE FOOD" />
+        </div>
+      </section>
+      <section className="pb-8">
+        <MenuCover
+          img={soupsBg}
+          title="SOUPS"
+          description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        />
+        <div className="container mx-auto px-5">
+          <div className="grid md:grid-cols-2 gap-6 py-6 sm:py-10">
+            <OurMenuCard />
+            <OurMenuCard />
+            <OurMenuCard />
+            <OurMenuCard />
+            <OurMenuCard />
+            <OurMenuCard />
+          </div>
+          <MoreButton text="ORDER YOUR FAVOURITE FOOD" />
+        </div>
+      </section>
     </div>
   );
 };
