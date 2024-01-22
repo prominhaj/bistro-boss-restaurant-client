@@ -1,16 +1,19 @@
 import React from "react";
-const ProductCard = ({item}) => {
-  const {image, name, price, recipe, _id} = item;
+const ProductCard = ({ item }) => {
+  const { image, name, price, recipe, _id } = item;
 
   return (
     <div className="flex flex-col">
-      <img className="w-full h-[300px] object-cover" src={image} alt="" />
+      <div className="relative">
+        <img className="w-full h-[300px] object-cover" src={image} alt="" />
+        <h4 className="text-center text-white text-base font-semibold font-['Inter'] leading-relaxed py-2 px-5 bg-gray-900 absolute right-5 top-5 rounded">${price}</h4>
+      </div>
       <div className="bg-zinc-100 py-[30px] px-[40px]">
         <h2 className="text-center mb-[8px] text-neutral-900 text-xl sm:text-2xl font-semibold font-['Inter']">
           {name}
         </h2>
         <p className="text-start text-neutral-900 text-base font-normal font-['Inter'] leading-relaxed">
-          {recipe.length > 80 ? recipe.slice(0, 80) + '...' : recipe}
+          {recipe.length > 80 ? recipe.slice(0, 80) + "..." : recipe}
         </p>
         <div className="text-center">
           <button className="px-[30px] mt-[24px] py-5 hover:bg-gray-800 hover:border-none duration-300 bg-gray-200 rounded-lg border-b-2 border-yellow-600 justify-start items-start gap-2.5 inline-flex text-center text-yellow-600 sm:text-xl font-medium font-['Inter'] uppercase">

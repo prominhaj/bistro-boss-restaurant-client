@@ -1,6 +1,6 @@
 import React from "react";
-import useMenu from "../../../useMenu/useMenu";
 import OurMenuCard from "../../../Components/OurMenuCard/OurMenuCard";
+import useMenu from "../../../hook/useMenu/useMenu";
 
 const Category = ({ category }) => {
   const [menu, loading] = useMenu(category, 6);

@@ -1,7 +1,7 @@
 import React from 'react';
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 import ProductCard from '../../../Components/ProductCard/ProductCard';
-import useMenu from '../../../useMenu/useMenu';
+import useMenu from '../../../hook/useMenu/useMenu';
 
 const ChefRecommends = () => {
     const [menu] = useMenu('popular', 3);
