@@ -3,7 +3,6 @@ import React from "react";
 const OurMenuCard = ({item}) => {
   const {image, name, price, recipe} = item;
 
-  console.log(recipe.length);
   return (
     <div className="flex gap-4 sm:gap-7">
       <div className="min-w-[118px] max-h-[104px] max-w-full h-full">
