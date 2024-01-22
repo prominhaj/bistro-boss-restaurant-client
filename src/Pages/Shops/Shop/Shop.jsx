@@ -9,12 +9,13 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-import ProductCard from "../../../Components/ProductCard/ProductCard";
+import ShopCategory from "../ShopCategory/ShopCategory";
 
 // Category Data
-const category = ["Salad", "pizza", "soups", "desserts", "drinks"];
+const category = ["Salad", "pizza", "soups", "desserts", "popular"];
 
 const Shop = () => {
+
   return (
     <>
       <HeroSection
@@ -45,14 +46,19 @@ const Shop = () => {
           />
           <TabPanels className="py-5">
             <TabPanel>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-              </div>
+              <ShopCategory category="salad"/>
+            </TabPanel>
+            <TabPanel>
+              <ShopCategory category="pizza"/>
+            </TabPanel>
+            <TabPanel>
+              <ShopCategory category="soup"/>
+            </TabPanel>
+            <TabPanel>
+              <ShopCategory category="dessert"/>
+            </TabPanel>
+            <TabPanel>
+              <ShopCategory category="popular"/>
             </TabPanel>
           </TabPanels>
         </Tabs>

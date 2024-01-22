@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import HeroSection from "../../../Components/HeroSection/HeroSection";
 import bgImg from "../../../assets/menu/banner3.jpg";
 import MenuCover from "../MenuCover/MenuCover";
@@ -9,8 +9,10 @@ import pizzaBg from "../../../assets/menu/pizza-bg.jpg";
 import saladsBg from "../../../assets/menu/salad-bg.jpg";
 import soupsBg from "../../../assets/menu/soup-bg.jpg";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
+import Category from "../Categorys/Category";
 
 const Menu = () => {
+
   return (
     <div>
       <HeroSection
@@ -21,12 +23,7 @@ const Menu = () => {
       <div className="container mx-auto px-5">
         <section className="py-[50px] sm:pt-[100px] sm:pb-12">
           <SectionTitle subHading="Don't miss" hading="TODAY'S OFFER" />
-          <div className="grid md:grid-cols-2 gap-6 py-6 sm:py-10">
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-          </div>
+          <Category category="popular"  />
           <MoreButton text="ORDER YOUR FAVOURITE FOOD" />
         </section>
       </div>
@@ -37,14 +34,7 @@ const Menu = () => {
           description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         />
         <div className="container mx-auto px-5">
-          <div className="grid md:grid-cols-2 gap-6 py-6 sm:py-10">
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-          </div>
+          <Category category="dessert"  />
           <MoreButton text="ORDER YOUR FAVOURITE FOOD" />
         </div>
       </section>
@@ -55,14 +45,7 @@ const Menu = () => {
           description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         />
         <div className="container mx-auto px-5">
-          <div className="grid md:grid-cols-2 gap-6 py-6 sm:py-10">
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-          </div>
+          <Category category="pizza" />
           <MoreButton text="ORDER YOUR FAVOURITE FOOD" />
         </div>
       </section>
@@ -73,14 +56,7 @@ const Menu = () => {
           description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         />
         <div className="container mx-auto px-5">
-          <div className="grid md:grid-cols-2 gap-6 py-6 sm:py-10">
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-          </div>
+          <Category category="salad"  />
           <MoreButton text="ORDER YOUR FAVOURITE FOOD" />
         </div>
       </section>
@@ -91,14 +67,7 @@ const Menu = () => {
           description="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         />
         <div className="container mx-auto px-5">
-          <div className="grid md:grid-cols-2 gap-6 py-6 sm:py-10">
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-            <OurMenuCard />
-          </div>
+          <Category category="soup" />
           <MoreButton text="ORDER YOUR FAVOURITE FOOD" />
         </div>
       </section>

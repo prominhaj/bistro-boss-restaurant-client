@@ -5,7 +5,7 @@ const useMenu = (category, limit) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
+    setLoading(true)
     fetch(
       `http://localhost:5000/menu?${category && `category=${category}`}&&${
         limit && `limit=${limit}`
@@ -16,7 +16,7 @@ const useMenu = (category, limit) => {
         setMenu(data);
         setLoading(false);
       });
-  }, []);
+  }, [category, limit]);
   return [menu, loading];
 };
 

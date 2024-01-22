@@ -8,11 +8,13 @@ import ChefRecommends from "../ChefRecommends/ChefRecommends";
 import FromOurMenuSection from "../FromOurMenuSection/FromOurMenuSection";
 import Testimonials from "../Testimonials/Testimonials";
 import { Helmet } from "react-helmet";
+import useMenu from "../../../useMenu/useMenu";
 
 const Home = () => {
+
   return (
     <>
-        {/* Helmet */}
+      {/* Helmet */}
       <Helmet>
         <title>Bistro Boss | Home</title>
       </Helmet>

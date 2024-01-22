@@ -5,7 +5,7 @@ import useMenu from '../../../useMenu/useMenu';
 
 const ChefRecommends = () => {
     const [menu] = useMenu('popular', 3);
-    console.log(menu);
+
     return (
         <section className="container mx-auto px-5 py-10">
             <SectionTitle subHading={"Should Try"} hading={"CHEF RECOMMENDS"} />
