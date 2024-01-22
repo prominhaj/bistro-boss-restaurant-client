@@ -13,7 +13,7 @@ const Header = () => {
     { name: "Contact Us", to: "/contact" },
     { name: "Dashboard", to: "/dashboard" },
     { name: "Our Menu", to: "/menu" },
-    { name: "Our Shop", to: "/shop" },
+    { name: "Our Shop", to: "/shop/salad" },
   ];
 
   function classNames(...classes) {

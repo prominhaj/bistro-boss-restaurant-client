@@ -18,6 +18,7 @@ const ShopCategory = ({ category }) => {
   }, [category]);
 
   const onPageChange = (number) => setCurrentPage(number);
+  
   return (
     <div>
       {loading && (
