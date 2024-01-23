@@ -7,6 +7,7 @@ import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const { createAccount, updateName, logOut } = useContext(AuthContext);
@@ -43,6 +44,11 @@ const Register = () => {
 
   return (
     <>
+      {/* Helmet */}
+      <Helmet>
+        <title>Bistro Boss | Register</title>
+      </Helmet>
+
       <div
         style={{ backgroundImage: `url('${bgImg}')` }}
         className="bg-no-repeat bg-cover lg:h-screen overflow-x-hidden lg:w-screen flex justify-center px-5 items-center"

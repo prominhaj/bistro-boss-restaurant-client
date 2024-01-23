@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import ShopCategory from "../ShopCategory/ShopCategory";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 // Category Data
 const categorys = ["salad", "pizza", "soup", "dessert", "popular"];
@@ -21,6 +22,11 @@ const Shop = () => {
 
   return (
     <>
+      {/* Helmet */}
+      <Helmet>
+        <title>Bistro Boss | Shop</title>
+      </Helmet>
+
       <HeroSection
         img={shopBg}
         title="OUR SHOP"

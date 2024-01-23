@@ -10,6 +10,7 @@ import Register from "../Pages/Register/Register";
 import Error from "../Pages/Error/Error";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import ProtectedLogin from "../PrivateRoute/ProtectedLogin";
+import Profile from "../Pages/Profile/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
             path: 'shop/:category',
             element: <Shop />
         },
+        {
+          path: 'profile',
+          element: <Profile />
+        }
     ]
   },
   {

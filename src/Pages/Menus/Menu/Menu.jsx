@@ -9,10 +9,16 @@ import saladsBg from "../../../assets/menu/salad-bg.jpg";
 import soupsBg from "../../../assets/menu/soup-bg.jpg";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import Category from "../Categorys/Category";
+import { Helmet } from "react-helmet";
 
 const Menu = () => {
   return (
     <div>
+      {/* Helmet */}
+      <Helmet>
+        <title>Bistro Boss | Menu</title>
+      </Helmet>
+      
       <HeroSection
         img={bgImg}
         title="OUR MENU"
