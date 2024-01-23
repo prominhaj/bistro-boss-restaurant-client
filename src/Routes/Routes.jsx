@@ -5,6 +5,9 @@ import DashBoard from "../Pages/DashBoard/DashBoard";
 import Menu from "../Pages/Menus/Menu/Menu";
 import Contact from "../Pages/Contacts/Contact/Contact";
 import Shop from "../Pages/Shops/Shop/Shop";
+import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
+import Error from "../Pages/Error/Error";
 
 export const router = createBrowserRouter([
   {
@@ -33,4 +36,16 @@ export const router = createBrowserRouter([
         },
     ]
   },
+  {
+    path: 'login',
+    element: <Login />
+  },
+  {
+    path: 'register',
+    element: <Register />
+  },
+  {
+    path: '/*',
+    element: <Error />
+  }
 ]);

@@ -69,16 +69,29 @@ const Header = () => {
                     </div>
                   </div>
                 </div>
+
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 lg:static lg:inset-auto sm:ml-6 sm:pr-0">
-                  <button className="bg-[#006837] relative p-[5px] rounded-full border border-[#F7931E]">
+                  <NavLink
+                    to="/login"
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? "pending"
+                        : isActive
+                        ? "text-yellow-300 text-xl font-bold font-['Inter'] uppercase"
+                        : "text-white text-xl font-bold font-['Inter'] uppercase"
+                    }
+                  >
+                    Login
+                  </NavLink>
+                  
+                  {/* <button className="bg-[#006837] relative p-[5px] rounded-full border border-[#F7931E]">
                     <TiShoppingCart className="text-white text-3xl" />
                     <span className="absolute -bottom-2">
                       <Badge value="0" severity="danger"></Badge>
                     </span>
-                  </button>
+                  </button> */}
 
-                  {/* Profile dropdown */}
-                  <Menu as="div" className="relative ml-4">
+                  {/* <Menu as="div" className="relative ml-4">
                     <div>
                       <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="absolute -inset-1.5" />
@@ -141,7 +154,7 @@ const Header = () => {
                         </Menu.Item>
                       </Menu.Items>
                     </Transition>
-                  </Menu>
+                  </Menu> */}
                 </div>
               </div>
             </div>

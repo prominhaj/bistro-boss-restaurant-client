@@ -15,3 +15,7 @@
 .thumbs-wrapper ul li img {
   height: 60px !important;
 }
+
+.carousel-root .carousel{
+  justify-content: center !important;
+}
