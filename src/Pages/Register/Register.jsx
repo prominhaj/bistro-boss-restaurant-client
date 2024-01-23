@@ -1,20 +1,18 @@
 import bgImg from "../../assets/others/authentication.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import authentication2 from "../../assets/others/authentication2.png";
-import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthProvider";
-import ReactiveButton from "reactive-button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBomb, faCircleNotch, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 
 const Register = () => {
-  const [state, setState] = useState("idle");
-  const { createAccount, updateName } = useContext(AuthContext);
+  const { createAccount, updateName, logOut } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -28,14 +26,18 @@ const Register = () => {
   } = useForm();
 
   const handleRegister = (data) => {
-    setState("Loading");
+    setLoading(true);
     createAccount(data.email, data.password)
       .then(() => {
-        updateName(data.name)
-        setState('success');
+        updateName(data.name);
+        setLoading(false);
+        logOut();
+        navigate("/login");
+        toast.success("Register SuccessFull");
       })
       .catch((error) => {
-        setState('error');
+        setLoading(false);
+        toast.error(error.message.substr(10));
       });
   };
 
@@ -150,35 +152,16 @@ const Register = () => {
                 )}
               </div>
               <div className="my-3">
-                <ReactiveButton
-                  style={{
-                    backgroundColor: "#D1A054",
-                    borderRadius: "10px",
-                    color: "white",
-                    fontSize: "20px",
-                    fontWeight: "700",
-                  }}
-                  width="100%"
-                  className="w-full h-[50px] cursor-pointer duration-300 font-['Inter']"
-                  type={"submit"}
-                  buttonState={state}
-                  idleText="Sign Up"
-                  loadingText={
-                    <>
-                      <FontAwesomeIcon icon={faCircleNotch} spin /> Loading
-                    </>
-                  }
-                  successText={
-                    <>
-                      <FontAwesomeIcon icon={faThumbsUp} /> Success
-                    </>
-                  }
-                  errorText={
-                    <>p-[=]\
-                      <FontAwesomeIcon icon={faBomb} /> Error
-                    </>
-                  }
-                />
+                <button
+                  type="submit"
+                  className="w-full h-[50px] cursor-pointer duration-300 text-white text-xl font-bold font-['Inter'] bg-[#D1A054] hover:bg-[#ffb84e] focus:bg-[#ffb84e] hover:text-black bg-opacity-70 rounded-lg flex items-center justify-center"
+                >
+                  {loading ? (
+                    <span className="loading loading-spinner loading-md"></span>
+                  ) : (
+                    "Sing Up"
+                  )}
+                </button>
               </div>
             </form>
             <div className="text-[#D1A054] text-center my-4 text-lg font-medium font-['Inter']">
@@ -187,7 +170,6 @@ const Register = () => {
                 Go to log in
               </Link>
             </div>
-            <SocialLogin />
           </div>
           <div className="lg:block hidden">
             <img src={authentication2} alt="" />
