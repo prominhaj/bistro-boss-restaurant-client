@@ -7,14 +7,13 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { useForm } from "react-hook-form";
 import {
   loadCaptchaEnginge,
-  LoadCanvasTemplate,
   LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const { login, googleLogin } = useContext(AuthContext);
+  const { login, googleLogin, githubLogin } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [captchaStatus, setCaptchaStatus] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -67,14 +66,25 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     googleLogin()
-    .then(() => {
+      .then(() => {
         toast.success("Login SuccessFull");
         navigate(from, { replace: true });
-    })
-    .catch(error => {
+      })
+      .catch((error) => {
         toast.error(error.message.substr(10));
-    })
-  }
+      });
+  };
+
+  const handleGithubLogin = () => {
+    githubLogin()
+      .then(() => {
+        toast.success("Login SuccessFull");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        toast.error(error.message.substr(10));
+      });
+  };
 
   return (
     <div
@@ -178,7 +188,7 @@ const Login = () => {
               Create a New Account
             </Link>
           </div>
-          <SocialLogin handleGoogleLogin={handleGoogleLogin} />
+          <SocialLogin handleGoogleLogin={handleGoogleLogin} handleGithubLogin={handleGithubLogin} />
         </div>
       </div>
     </div>
