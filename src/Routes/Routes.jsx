@@ -9,6 +9,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Error from "../Pages/Error/Error";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import ProtectedLogin from "../PrivateRoute/ProtectedLogin";
 
 export const router = createBrowserRouter([
   {
@@ -39,11 +40,11 @@ export const router = createBrowserRouter([
   },
   {
     path: 'login',
-    element: <Login />
+    element: <ProtectedLogin><Login /></ProtectedLogin>
   },
   {
     path: 'register',
-    element: <Register />
+    element: <ProtectedLogin><Register /></ProtectedLogin>
   },
   {
     path: '/*',
