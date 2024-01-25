@@ -11,6 +11,12 @@ import Error from "../Pages/Error/Error";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import ProtectedLogin from "../PrivateRoute/ProtectedLogin";
 import Profile from "../Pages/Profile/Profile";
+import DashBoardHome from "../Pages/DashBoards/Pages/DashBoardHome/DashBoardHome";
+import Reservation from "../Pages/DashBoards/Pages/Reservation/Reservation";
+import PaymentHistory from "../Pages/DashBoards/Pages/PaymentHistory/PaymentHistory";
+import MyCart from "../Pages/DashBoards/Pages/MyCart/MyCart";
+import AddReview from "../Pages/DashBoards/Pages/AddReview/AddReview";
+import MyBooking from "../Pages/DashBoards/Pages/MyBooking/MyBooking";
 
 export const router = createBrowserRouter([
   {
@@ -40,15 +46,62 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "dashboard",
+    path: "/dashboard",
     element: (
       <PrivateRoute>
         <DashBoard />
       </PrivateRoute>
     ),
     children: [
-      
-    ]
+      {
+        path: "/dashboard",
+        element: (
+          <PrivateRoute>
+            <DashBoardHome />{" "}
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/reservation",
+        element: (
+          <PrivateRoute>
+            <Reservation />{" "}
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/history",
+        element: (
+          <PrivateRoute>
+            <PaymentHistory />{" "}
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/cart",
+        element: (
+          <PrivateRoute>
+            <MyCart />{" "}
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/review",
+        element: (
+          <PrivateRoute>
+            <AddReview />{" "}
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/booking",
+        element: (
+          <PrivateRoute>
+            <MyBooking />{" "}
+          </PrivateRoute>
+        ),
+      },
+    ],
   },
   {
     path: "login",
