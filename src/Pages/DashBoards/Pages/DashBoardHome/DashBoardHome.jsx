@@ -59,7 +59,7 @@ const DashBoardHome = () => {
       </section>
 
       {/* Activities Section */}
-      <section className="grid lg:grid-cols-2">
+      <section className="grid lg:grid-cols-2 md:pt-4">
         <div className="bg-orange-100 lg:border-r-2 border-orange-400 py-10 lg:py-20 flex flex-col justify-center items-center gap-y-3 sm:gap-y-6 w-full">
           <div>
             <img
