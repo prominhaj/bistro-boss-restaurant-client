@@ -1,7 +1,7 @@
 import { FaTrashAlt } from "react-icons/fa";
 
-const TableItem = ({ item, index }) => {
-  const { image, name, price, _id } = item;
+const TableItem = ({ item, index, onDelete }) => {
+  const { image, name, price } = item;
 
   return (
     <tr className="flex px-10 items-center justify-between py-3 sm:py-5 border-b">
@@ -18,7 +18,7 @@ const TableItem = ({ item, index }) => {
         ${price}
       </td>
       <td className="w-1/4 text-center">
-        <button className="bg-red-700 rounded-[5px] p-3"><FaTrashAlt className="text-white text-2xl" /></button>
+        <button onClick={() => onDelete(item)} className="bg-red-700 rounded-[5px] p-3"><FaTrashAlt className="text-white text-2xl" /></button>
       </td>
     </tr>
   );

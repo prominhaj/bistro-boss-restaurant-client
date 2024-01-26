@@ -4,14 +4,39 @@ import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
 import useCart from "../../../../hook/useCart/useCart";
 import { Link } from "react-router-dom";
 import TableItem from "../../../Shared/TableItem/TableItem";
+import swal from "sweetalert";
 
 const MyCart = () => {
-  const [cart] = useCart();
-  console.log(cart);
+  const [cart, refetch] = useCart();
 
   const totalPrice = cart.reduce((accumulator, currentValue) => {
     return accumulator + currentValue.price;
   }, 0);
+
+  const handleDelete = (item) => {
+    swal({
+      title: "Are you sure?",
+      text: `${item.name} Delete`,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        fetch(`http://localhost:5000/carts/${item._id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.acknowledged) {
+              refetch();
+              swal("Delete SuccessFull For Your Cart", {
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
+  };
 
   return (
     <>
@@ -56,8 +81,13 @@ const MyCart = () => {
                 </tr>
               </thead>
               <tbody>
-                {cart.map((item, index) => (
-                  <TableItem key={item._id} item={item} index={index} />
+                {cart?.map((item, index) => (
+                  <TableItem
+                    key={item._id}
+                    item={item}
+                    onDelete={handleDelete}
+                    index={index}
+                  />
                 ))}
               </tbody>
             </table>
