@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
 
 const PaymentHistory = () => {
   return (
@@ -8,7 +9,9 @@ const PaymentHistory = () => {
       <Helmet>
         <title>Bistro Boss | Dashboard | History</title>
       </Helmet>
-      <h1>This is DashBoard Payment History Page</h1>
+      
+      {/* Section Title */}
+      <SectionTitle subHading="At a Glance!" hading="PAYMENT HISTORY" />
     </>
   );
 };
