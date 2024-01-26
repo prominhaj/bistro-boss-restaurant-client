@@ -78,7 +78,7 @@ const homeMenus = [
 const LeftMenu = () => {
   return (
     <section>
-      <div className="lg:w-[280px] max-w-full h-screen sticky left-0 top-0 bg-[#D1A054] py-[50px] px-[15px] md:px-[25px]">
+      <div className="lg:w-[280px] max-w-full h-screen sticky left-0 top-0 bg-[#D1A054] py-[50px] px-[10px] sm:px-[15px] md:px-[25px]">
         <div className="">
           <div className="block lg:hidden">
             <div className="flex justify-center items-center">
