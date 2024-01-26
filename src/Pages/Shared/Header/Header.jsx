@@ -27,24 +27,24 @@ const Header = () => {
 
   return (
     <header className="fixed z-50 w-full">
-      <Disclosure as="nav" className="bg-neutral-900 bg-opacity-50 py-6">
+      <Disclosure as="nav" className="py-6 bg-opacity-50 bg-neutral-900">
         {({ open }) => (
           <>
-            <div className="container mx-auto px-5">
+            <div className="container px-5 mx-auto">
               <div className="relative flex items-center justify-between">
                 <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
                   {/* Mobile menu button*/}
-                  <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-white bg-gray-700 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                  <Disclosure.Button className="relative inline-flex items-center justify-center p-2 text-white bg-gray-700 rounded-md hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                     <span className="absolute -inset-0.5" />
                     <span className="sr-only">Open main menu</span>
                     {open ? (
                       <XMarkIcon className="block h-7 w-7" aria-hidden="true" />
                     ) : (
-                      <Bars3Icon className="block h-8 w-8" aria-hidden="true" />
+                      <Bars3Icon className="block w-8 h-8" aria-hidden="true" />
                     )}
                   </Disclosure.Button>
                 </div>
-                <div className="flex flex-1 items-center justify-center lg:justify-between">
+                <div className="flex items-center justify-center flex-1 lg:justify-between">
                   <div className="flex items-center">
                     <Link to="/">
                       <img
@@ -79,7 +79,7 @@ const Header = () => {
                   {user ? (
                     <>
                       <Link to="/dashboard/cart" className="bg-[#006837] relative p-[5px] rounded-full border border-[#F7931E]">
-                        <TiShoppingCart className="text-white text-3xl" />
+                        <TiShoppingCart className="text-3xl text-white" />
                         <span className="absolute -right-1 -bottom-2">
                           <Badge value={cart.length} severity="danger"></Badge>
                         </span>
@@ -87,7 +87,7 @@ const Header = () => {
 
                       <Menu as="div" className="relative ml-4">
                         <div>
-                          <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                          <Menu.Button className="relative flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                             {user.photoURL ? (
                               <div className="avatar online">
                                 <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -96,8 +96,8 @@ const Header = () => {
                               </div>
                             ) : (
                               <div className="avatar online placeholder">
-                                <div className="bg-neutral text-neutral-content rounded-full w-10">
-                                  <span className="text-xl">{user?.displayName.slice(0, 2)}</span>
+                                <div className="w-10 rounded-full bg-neutral text-neutral-content">
+                                  <span className="text-xl">{user?.displayName?.slice(0, 2)}</span>
                                 </div>
                               </div>
                             )}
@@ -112,7 +112,7 @@ const Header = () => {
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95"
                         >
-                          <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Items className="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <Menu.Item>
                               {({ active }) => (
                                 <Link
@@ -175,7 +175,7 @@ const Header = () => {
             </div>
 
             <Disclosure.Panel className="lg:hidden">
-              <div className="container mx-auto space-y-1 px-2 pb-3 pt-2">
+              <div className="container px-2 pt-2 pb-3 mx-auto space-y-1">
                 {navigation.map((item) => (
                   <NavLink
                     key={item.name}

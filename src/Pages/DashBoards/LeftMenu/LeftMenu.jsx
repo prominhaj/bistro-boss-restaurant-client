@@ -1,14 +1,15 @@
 import { IoMdHome } from "react-icons/io";
 import { NavLink } from "react-router-dom";
-import { FaCalendarAlt, FaWallet } from "react-icons/fa";
+import { FaCalendarAlt, FaUsers, FaWallet } from "react-icons/fa";
 import { IoCartSharp } from "react-icons/io5";
 import { MdEmail, MdRateReview } from "react-icons/md";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { IoMenu } from "react-icons/io5";
+import { IoRestaurant } from "react-icons/io5";
 import logo from "../../../assets/logo.png";
 
 // Left Menu data
-const dashBoardMenus = [
+const userDashBoardMenus = [
   {
     id: 1,
     name: "User Home",
@@ -47,6 +48,40 @@ const dashBoardMenus = [
   },
 ];
 
+// Admin DashBoard Menus
+const adminDashBoardMenus = [
+  {
+    id: 1,
+    name: "Admin Home",
+    icon: <IoMdHome className="text-4xl lg:text-2xl" />,
+    to: "/dashboard/admin/home",
+  },
+  {
+    id: 2,
+    name: "add items",
+    icon: <IoRestaurant className="text-4xl lg:text-2xl" />,
+    to: "/dashboard/admin/addItems",
+  },
+  {
+    id: 3,
+    name: "manage items",
+    icon: <IoMenu className="text-4xl lg:text-2xl" />,
+    to: "/dashboard/admin/manageItems",
+  },
+  {
+    id: 4,
+    name: "Manage bookings",
+    icon: <MdOutlineShoppingBag className="text-4xl lg:text-2xl" />,
+    to: "/dashboard/admin/manageBookings",
+  },
+  {
+    id: 5,
+    name: "all users",
+    icon: <FaUsers className="text-4xl lg:text-2xl" />,
+    to: "/dashboard/admin/allUsers",
+  },
+];
+
 // Home Menu
 const homeMenus = [
   {
@@ -81,7 +116,7 @@ const LeftMenu = () => {
       <div className="">
         <div className="">
           <div className="block lg:hidden">
-            <div className="flex justify-center items-center">
+            <div className="flex items-center justify-center">
               <img className="w-10" src={logo} alt="" />
             </div>
           </div>
@@ -95,8 +130,8 @@ const LeftMenu = () => {
           </div>
         </div>
         <div className="pt-[50px]">
-          <ul className="flex flex-col items-center lg:items-start gap-6">
-            {dashBoardMenus.map((menu) => (
+          <ul className="flex flex-col items-center gap-6 lg:items-start">
+            {userDashBoardMenus.map((menu) => (
               <li key={menu.id}>
                 <NavLink
                   to={menu.to}
@@ -108,7 +143,7 @@ const LeftMenu = () => {
                       : "text-neutral-900 text-base font-medium font-['Cinzel'] flex gap-2 items-center"
                   }
                 >
-                  <div className="flex gap-3 items-center">
+                  <div className="flex items-center gap-3">
                     <span>{menu.icon}</span>
                     <h4 className="hidden lg:block text-base font-['Cinzel']">
                       {menu.name}
@@ -118,7 +153,7 @@ const LeftMenu = () => {
               </li>
             ))}
           </ul>
-          <div className="border border-b my-6"></div>
+          <div className="my-6 border border-b"></div>
           <ul className="flex flex-col gap-6">
             {homeMenus.map((menu) => (
               <li key={menu.id}>
@@ -132,7 +167,7 @@ const LeftMenu = () => {
                       : "text-neutral-900 text-base font-medium font-['Cinzel'] flex gap-2 items-center"
                   }
                 >
-                  <div className="flex gap-3 items-center">
+                  <div className="flex items-center gap-3">
                     <span>{menu.icon}</span>
                     <h4 className="hidden lg:block text-base font-medium font-['Cinzel']">
                       {menu.name}

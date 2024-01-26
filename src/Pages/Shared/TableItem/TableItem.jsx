@@ -4,8 +4,8 @@ const TableItem = ({ item, index, onDelete }) => {
   const { image, name, price } = item;
 
   return (
-    <tr className="flex px-10 items-center justify-between py-3 sm:py-5 border-b">
-      <td className="w-1/4 flex items-center gap-10">
+    <tr className="flex items-center justify-between px-10 py-3 border-b sm:py-5">
+      <td className="flex items-center w-1/4 gap-10">
         <span className="text-center text-neutral-900 text-xl font-bold font-['Inter']">
           {index + 1}
         </span>
@@ -18,7 +18,7 @@ const TableItem = ({ item, index, onDelete }) => {
         ${price}
       </td>
       <td className="w-1/4 text-center">
-        <button onClick={() => onDelete(item)} className="bg-red-700 rounded-[5px] p-3"><FaTrashAlt className="text-white text-2xl" /></button>
+        <button onClick={() => onDelete(item)} className="bg-red-700 rounded-[5px] p-3"><FaTrashAlt className="text-2xl text-white" /></button>
       </td>
     </tr>
   );

@@ -1,5 +1,5 @@
 import bgImg from "../../assets/others/authentication.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import authentication2 from "../../assets/others/authentication2.png";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
@@ -10,10 +10,12 @@ import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
 
 const Register = () => {
-  const { createAccount, updateName, logOut } = useContext(AuthContext);
+  const { createAccount, updateName } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -31,10 +33,21 @@ const Register = () => {
     createAccount(data.email, data.password)
       .then(() => {
         updateName(data.name);
-        setLoading(false);
-        logOut();
-        navigate("/login");
-        toast.success("Register SuccessFull");
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ name: data.name, email: data.email }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              setLoading(false);
+              navigate(from, { replace: true });
+              toast.success("Register SuccessFull");
+            }
+          });
       })
       .catch((error) => {
         setLoading(false);
@@ -51,7 +64,7 @@ const Register = () => {
 
       <div
         style={{ backgroundImage: `url('${bgImg}')` }}
-        className="bg-no-repeat bg-cover lg:h-screen overflow-x-hidden lg:w-screen flex justify-center px-5 items-center"
+        className="flex items-center justify-center px-5 overflow-x-hidden bg-no-repeat bg-cover lg:h-screen lg:w-screen"
       >
         <div className="grid lg:grid-cols-2 shadow-[11px_19px_31px_-8px_rgba(0,0,0,0.75)] my-5 px-5 lg:px-20 py-10 border rounded-md border-gray-300 items-center gap-10">
           <div>
@@ -62,7 +75,7 @@ const Register = () => {
               onSubmit={handleSubmit(handleRegister)}
               className="grid gap-4"
             >
-              <div className="flex gap-2 flex-col">
+              <div className="flex flex-col gap-2">
                 <label
                   htmlFor="name"
                   className="text-neutral-700 ps-1 text-lg font-semibold font-['Inter']"
@@ -81,7 +94,7 @@ const Register = () => {
                   <span className="text-red-600">Name is Required</span>
                 )}
               </div>
-              <div className="flex gap-2 flex-col">
+              <div className="flex flex-col gap-2">
                 <label
                   htmlFor="email"
                   className="text-neutral-700 ps-1 text-lg font-semibold font-['Inter']"
@@ -100,7 +113,7 @@ const Register = () => {
                   <span className="text-red-600">email is Required</span>
                 )}
               </div>
-              <div className="flex gap-2 flex-col">
+              <div className="flex flex-col gap-2">
                 <label
                   htmlFor="password"
                   className="text-neutral-700 ps-1 text-lg font-semibold font-['Inter']"
@@ -125,13 +138,13 @@ const Register = () => {
                   />
                   {/* Show Password */}
                   <span
-                    className="toggle-password absolute right-3 bottom-3"
+                    className="absolute toggle-password right-3 bottom-3"
                     onClick={togglePasswordVisibility}
                   >
                     {showPassword ? (
-                      <FaRegEyeSlash className="text-black text-2xl" />
+                      <FaRegEyeSlash className="text-2xl text-black" />
                     ) : (
-                      <FaRegEye className="text-black text-2xl" />
+                      <FaRegEye className="text-2xl text-black" />
                     )}
                   </span>
                 </div>
@@ -151,7 +164,7 @@ const Register = () => {
                   </span>
                 )}
                 {errors.password?.type === "pattern" && (
-                  <span className="text-red-600 text-center">
+                  <span className="text-center text-red-600">
                     Password must have one uppercase one lower case, <br /> one
                     number and one special characters
                   </span>
@@ -177,7 +190,7 @@ const Register = () => {
               </Link>
             </div>
           </div>
-          <div className="lg:block hidden">
+          <div className="hidden lg:block">
             <img src={authentication2} alt="" />
           </div>
         </div>
