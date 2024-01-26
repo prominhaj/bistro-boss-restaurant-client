@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
 
 const MyBooking = () => {
   return (
@@ -8,7 +9,12 @@ const MyBooking = () => {
       <Helmet>
         <title>Bistro Boss | Dashboard | Booking</title>
       </Helmet>
-      <h1>This is DashBoard MyBooking Page</h1>
+
+      {/* Section Title */}
+      <SectionTitle subHading="Excellent Ambience" hading="MY BOOKINGS" />
+      <section className="py-10">
+
+      </section>
     </>
   );
 };

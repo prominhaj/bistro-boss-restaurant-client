@@ -21,8 +21,8 @@ const AddReview = () => {
         subHading="Sharing is Caring!!!"
         hading="GIVE A REVIEW..."
       />
-      <section className="py-10">
-        <form className="bg-zinc-100 px-[100px] py-[50px]">
+      <section className="py-10 lg:px-[80px]">
+        <form className="bg-zinc-100 px-[30px] md:px-[100px] py-[30px] md:py-[50px]">
           <div className="text-center">
             <h2 className="text-neutral-900 text-[32px] font-medium font-['Cinzel']">
               Rate US!

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
 import useCart from "../../../../hook/useCart/useCart";
