@@ -4,6 +4,7 @@ import LeftMenu from "../LeftMenu/LeftMenu";
 import { Outlet } from "react-router-dom";
 
 const DashBoard = () => {
+  // TODO
   const isAdmin = true;
 
   return (

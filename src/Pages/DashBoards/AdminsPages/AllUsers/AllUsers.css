@@ -1,0 +1,8 @@
+.p-datatable .p-datatable-thead > tr > th {
+  background: transparent !important;
+  color: white !important;
+}
+
+.p-datatable .p-datatable-tbody > tr > td{
+    padding: 1.2rem 1.2rem !important;
+}
