@@ -7,10 +7,15 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
 import { Button } from "primereact/button";
 import swal from "sweetalert";
+import useAxiosSecure from "../../../../hook/useAxiosSecure/useAxiosSecure";
+
+
 const AllUsers = () => {
+  const [axiosSecure] = useAxiosSecure();
+
   const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await fetch("http://localhost:5000/users");
-    return res.json();
+    const res = await axiosSecure.get("/users");
+    return res.data;
   });
 
   // Handle Admin Role

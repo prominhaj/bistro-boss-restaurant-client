@@ -8,7 +8,7 @@ import { Calendar } from "primereact/calendar";
 import { IoTimeOutline } from "react-icons/io5";
 import { Input, Select } from "@chakra-ui/react";
 import OurLocationItem from "../../../../Components/OurLocationItem/OurLocationItem";
-import locations from "../../../../../public/LocationsData/LoacationData";
+import locations from "../../../../LocationsData/LoacationData";
 
 const Reservation = () => {
   const [date, setDate] = useState(null);

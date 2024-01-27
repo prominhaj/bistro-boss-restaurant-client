@@ -9,7 +9,7 @@ import { IoTimeOutline } from "react-icons/io5";
 import { FormControl, FormLabel, Input, Textarea } from "@chakra-ui/react";
 import { FaTelegramPlane } from "react-icons/fa";
 import OurLocationItem from "../../../Components/OurLocationItem/OurLocationItem";
-import locations from "../../../../public/LocationsData/LoacationData";
+import locations from "../../../LocationsData/LoacationData";
 
 const Contact = () => {
 
