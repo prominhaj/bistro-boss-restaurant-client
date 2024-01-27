@@ -9,7 +9,6 @@ import { FaRegCalendarAlt, FaStar, FaWallet } from "react-icons/fa";
 
 const DashBoardHome = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
   return (
     <>
       {/* Helmet */}

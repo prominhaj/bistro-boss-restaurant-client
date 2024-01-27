@@ -6,12 +6,38 @@ import { FaUsers } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
 import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
 import { Button } from "primereact/button";
-
+import swal from "sweetalert";
 const AllUsers = () => {
   const { data: users = [], refetch } = useQuery(["users"], async () => {
     const res = await fetch("http://localhost:5000/users");
     return res.json();
   });
+
+  // Handle Admin Role
+  const handleAdminRole = (item) => {
+    swal({
+      title: "Are you sure?",
+      text: `${item.name} Admin Role`,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        fetch(`http://localhost:5000/users/admin/${item._id}`, {
+          method: "PATCH",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.modifiedCount) {
+              refetch();
+              swal("SuccessFull Admin Role", {
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
+  };
 
   const nameBodyTemplate = (product, index) => {
     return (
@@ -34,9 +60,14 @@ const AllUsers = () => {
     );
   };
 
-  const roleBodyTemplate = () => {
-    return (
-      <button className="p-3 bg-[#D1A054] rounded">
+  const roleBodyTemplate = (product) => {
+    return product.role === "admin" ? (
+      <button className="px-3 py-1 text-white rounded bg-violet-500 hover:bg-violet-600">Admin</button>
+    ) : (
+      <button
+        onClick={() => handleAdminRole(product)}
+        className="p-3 bg-[#D1A054] rounded"
+      >
         <FaUsers className="text-2xl text-white" />
       </button>
     );
@@ -67,16 +98,15 @@ const AllUsers = () => {
           currentPageReportTemplate="{first} to {last} of {totalRecords}"
           paginatorLeft={paginatorLeft}
           paginatorRight={paginatorRight}
-        
           value={users}
-          pt=
-          {{
+          pt={{
             headerRow: {
               className: "!bg-[#D1A054] !rounded-tl-[15px] !rounded-tr-[15px]",
             },
             bodyRow: { className: "!py-5 border-b border-gray-200" },
           }}
-          tableStyle={{ minWidth: "60rem" }}>
+          tableStyle={{ minWidth: "60rem" }}
+        >
           <Column header="NAME" body={nameBodyTemplate}></Column>
           <Column header="EMAIL" body={emailBodyTemplate}></Column>
           <Column header="ROLE" body={roleBodyTemplate}></Column>
