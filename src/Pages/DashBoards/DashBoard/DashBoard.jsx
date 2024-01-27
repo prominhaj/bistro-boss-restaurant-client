@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import LeftMenu from "../LeftMenu/LeftMenu";
 import { Outlet } from "react-router-dom";
+import useAdmin from "../../../hook/useAdmin/useAdmin";
 
 const DashBoard = () => {
-  // TODO
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   return (
     <>
