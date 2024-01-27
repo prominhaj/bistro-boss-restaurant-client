@@ -9,7 +9,7 @@ import { FaRegCalendarAlt, FaStar, FaWallet } from "react-icons/fa";
 
 const DashBoardHome = () => {
   const { user } = useContext(AuthContext);
-
+  console.log(user);
   return (
     <>
       {/* Helmet */}
@@ -22,8 +22,8 @@ const DashBoardHome = () => {
       </h1>
 
       {/* Items Section */}
-      <section className="grid md:grid-cols-3 gap-6 py-6 w-full">
-        <div className="bg-gradient-to-r from-fuchsia-500 to-fuchsia-100 py-8 rounded-lg flex items-center gap-6 justify-center w-full">
+      <section className="grid w-full gap-6 py-6 md:grid-cols-3">
+        <div className="flex items-center justify-center w-full gap-6 py-8 rounded-lg bg-gradient-to-r from-fuchsia-500 to-fuchsia-100">
           <img src={walletImg} alt="" />
           <div className="flex flex-col">
             <h2 className="text-white text-[30px] sm:text-[40px] font-extrabold font-['Inter']">
@@ -34,7 +34,7 @@ const DashBoardHome = () => {
             </h6>
           </div>
         </div>
-        <div className="bg-gradient-to-r from-orange-400 to-amber-100 py-8 rounded-lg flex items-center gap-6 justify-center w-full">
+        <div className="flex items-center justify-center w-full gap-6 py-8 rounded-lg bg-gradient-to-r from-orange-400 to-amber-100">
           <img src={telephoneImg} alt="" />
           <div className="flex flex-col">
             <h2 className="text-white text-[30px] sm:text-[40px] font-extrabold font-['Inter']">
@@ -45,7 +45,7 @@ const DashBoardHome = () => {
             </h6>
           </div>
         </div>
-        <div className="bg-gradient-to-r from-pink-500 to-pink-200 py-8 rounded-lg flex items-center gap-6 justify-center w-full">
+        <div className="flex items-center justify-center w-full gap-6 py-8 rounded-lg bg-gradient-to-r from-pink-500 to-pink-200">
           <img src={storeImg} alt="" />
           <div className="flex flex-col">
             <h2 className="text-white text-[30px] sm:text-[40px] font-extrabold font-['Inter']">
@@ -60,13 +60,23 @@ const DashBoardHome = () => {
 
       {/* Activities Section */}
       <section className="grid lg:grid-cols-2 md:pt-4">
-        <div className="bg-orange-100 lg:border-r-2 border-orange-400 py-10 lg:py-20 flex flex-col justify-center items-center gap-y-3 sm:gap-y-6 w-full">
+        <div className="flex flex-col items-center justify-center w-full py-10 bg-orange-100 border-orange-400 lg:border-r-2 lg:py-20 gap-y-3 sm:gap-y-6">
           <div>
-            <img
-              className="w-[100px] sm:w-[130px] md::w-[198px] rounded-full border-2 border-orange-400"
-              src={user?.photoURL}
-              alt=""
-            />
+            {user?.photoURL ? (
+              <img
+                className="w-[100px] sm:w-[130px] md::w-[198px] rounded-full border-2 border-orange-400"
+                src={user?.photoURL}
+                alt="Profile Img"
+              />
+            ) : (
+              <div className="avatar online placeholder">
+                <div className="w-16 rounded-full sm:w-24 bg-neutral text-neutral-content">
+                  <span className="text-xl">
+                    {user?.displayName?.slice(0, 2)}
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
           <h2 className="text-neutral-900 text-[25px] sm:text-[32px] font-semibold font-['Cinzel']">
             {user?.displayName}

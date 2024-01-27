@@ -4,6 +4,8 @@ import LeftMenu from "../LeftMenu/LeftMenu";
 import { Outlet } from "react-router-dom";
 
 const DashBoard = () => {
+  const isAdmin = true;
+
   return (
     <>
       {/* Helmet */}
@@ -13,7 +15,7 @@ const DashBoard = () => {
 
       <div className="flex gap-6">
         {/* Left Menu */}
-        <LeftMenu />
+        <LeftMenu isAdmin={isAdmin} />
 
         <div className="pt-[30px] pr-[30px] md:pt-[50px] md:pr-[50px] w-full">
           {/* OutLet */}

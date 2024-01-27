@@ -67,9 +67,22 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     googleLogin()
-      .then(() => {
-        toast.success("Login SuccessFull");
-        navigate(from, { replace: true });
+      .then((result) => {
+        const user = result.user;
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ name: user.displayName, email: user.email }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              toast.success("Login SuccessFull");
+              navigate(from, { replace: true });
+            }
+          });
       })
       .catch((error) => {
         toast.error(error.message.substr(10));
@@ -78,9 +91,23 @@ const Login = () => {
 
   const handleGithubLogin = () => {
     githubLogin()
-      .then(() => {
-        toast.success("Login SuccessFull");
-        navigate(from, { replace: true });
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ name: user.displayName, email: user.email }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              toast.success("Login SuccessFull");
+              navigate(from, { replace: true });
+            }
+          });
       })
       .catch((error) => {
         toast.error(error.message.substr(10));
@@ -96,10 +123,10 @@ const Login = () => {
 
       <div
         style={{ backgroundImage: `url('${bgImg}')` }}
-        className="bg-no-repeat bg-cover lg:h-screen overflow-x-hidden lg:w-screen flex justify-center px-5 items-center"
+        className="flex items-center justify-center px-5 overflow-x-hidden bg-no-repeat bg-cover lg:h-screen lg:w-screen"
       >
         <div className="grid lg:grid-cols-2 shadow-[11px_19px_31px_-8px_rgba(0,0,0,0.75)] my-5 px-5 lg:px-20 py-10 border rounded-md border-gray-300 items-center gap-10">
-          <div className="lg:block hidden">
+          <div className="hidden lg:block">
             <img src={authentication2} alt="" />
           </div>
           <div>
@@ -107,7 +134,7 @@ const Login = () => {
               Login
             </h3>
             <form onSubmit={handleSubmit(handleLogin)} className="grid gap-4">
-              <div className="flex gap-2 flex-col">
+              <div className="flex flex-col gap-2">
                 <label
                   htmlFor="email"
                   className="text-neutral-700 ps-1 text-lg font-semibold font-['Inter']"
@@ -126,7 +153,7 @@ const Login = () => {
                   <span className="text-red-600">Email is required</span>
                 )}
               </div>
-              <div className="flex gap-2 flex-col">
+              <div className="flex flex-col gap-2">
                 <label
                   htmlFor="password"
                   className="text-neutral-700 ps-1 text-lg font-semibold font-['Inter']"
@@ -170,7 +197,7 @@ const Login = () => {
                   type="button"
                   onClick={handleCaptcha}
                   disabled={captchaStatus}
-                  className="btn btn-outline disabled:hidden mt-2 mr-2 absolute right-0 pb-1 btn-sm font-bold"
+                  className="absolute right-0 pb-1 mt-2 mr-2 font-bold btn btn-outline disabled:hidden btn-sm"
                 >
                   Check
                 </button>

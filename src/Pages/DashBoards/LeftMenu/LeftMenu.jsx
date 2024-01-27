@@ -110,7 +110,7 @@ const homeMenus = [
   },
 ];
 
-const LeftMenu = () => {
+const LeftMenu = ({ isAdmin }) => {
   return (
     <section className="bg-[#D1A054] lg:w-[300px] max-w-full lg:h-screen sticky left-0 top-0 py-[50px] px-[10px] sm:px-[15px] md:px-[25px]">
       <div className="">
@@ -131,27 +131,49 @@ const LeftMenu = () => {
         </div>
         <div className="pt-[50px]">
           <ul className="flex flex-col items-center gap-6 lg:items-start">
-            {userDashBoardMenus.map((menu) => (
-              <li key={menu.id}>
-                <NavLink
-                  to={menu.to}
-                  className={({ isActive, isPending }) =>
-                    isPending
-                      ? "pending"
-                      : isActive
-                      ? "text-white text-base font-bold font-['Cinzel flex gap-2 items-center"
-                      : "text-neutral-900 text-base font-medium font-['Cinzel'] flex gap-2 items-center"
-                  }
-                >
-                  <div className="flex items-center gap-3">
-                    <span>{menu.icon}</span>
-                    <h4 className="hidden lg:block text-base font-['Cinzel']">
-                      {menu.name}
-                    </h4>
-                  </div>
-                </NavLink>
-              </li>
-            ))}
+            {isAdmin
+              ? adminDashBoardMenus.map((menu) => (
+                  <li key={menu.id}>
+                    <NavLink
+                      to={menu.to}
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "text-white text-base font-bold font-['Cinzel flex gap-2 items-center"
+                          : "text-neutral-900 text-base font-medium font-['Cinzel'] flex gap-2 items-center"
+                      }
+                    >
+                      <div className="flex items-center gap-3">
+                        <span>{menu.icon}</span>
+                        <h4 className="hidden lg:block text-base font-['Cinzel']">
+                          {menu.name}
+                        </h4>
+                      </div>
+                    </NavLink>
+                  </li>
+                ))
+              : userDashBoardMenus.map((menu) => (
+                  <li key={menu.id}>
+                    <NavLink
+                      to={menu.to}
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "text-white text-base font-bold font-['Cinzel flex gap-2 items-center"
+                          : "text-neutral-900 text-base font-medium font-['Cinzel'] flex gap-2 items-center"
+                      }
+                    >
+                      <div className="flex items-center gap-3">
+                        <span>{menu.icon}</span>
+                        <h4 className="hidden lg:block text-base font-['Cinzel']">
+                          {menu.name}
+                        </h4>
+                      </div>
+                    </NavLink>
+                  </li>
+                ))}
           </ul>
           <div className="my-6 border border-b"></div>
           <ul className="flex flex-col gap-6">
