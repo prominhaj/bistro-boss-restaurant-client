@@ -5,15 +5,19 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import useAdmin from "../../../hook/useAdmin/useAdmin";
 
 const DashBoard = () => {
-  const [isAdmin] = useAdmin();
+  const [isAdmin, isAdminLoading] = useAdmin();
   const location = useLocation();
   const navigate = useNavigate();
-
+  
   useEffect(() => {
-    if(location.pathname === '/dashboard'){
-      navigate('/dashboard/home')
+    if (location.pathname === "/dashboard") {
+      if (isAdmin || isAdminLoading) {
+        return navigate("/dashboard/admin/home");
+      } else {
+        return navigate("/dashboard/home");
+      }
     }
-  }, []);
+  }, [location, navigate, isAdmin, isAdminLoading]);
 
   return (
     <>

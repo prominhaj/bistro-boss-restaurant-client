@@ -22,6 +22,7 @@ import AddItems from "../Pages/DashBoards/AdminsPages/AddItems/AddItems";
 import ManageItems from "../Pages/DashBoards/AdminsPages/ManageItems/ManageItems";
 import ManageBooking from "../Pages/DashBoards/AdminsPages/ManageBooking/ManageBooking";
 import AllUsers from "../Pages/DashBoards/AdminsPages/AllUsers/AllUsers";
+import PrivateAdmin from "../PrivateRoute/PrivateAdmin";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,7 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      // User DashBoard Routes
       {
         path: "/dashboard/home",
         element: (
@@ -106,25 +108,27 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
+      // Admin Routes
       {
         path: "/dashboard/admin/home",
-        element: <AdminDashBoard />,
+        element: <PrivateAdmin><AdminDashBoard /></PrivateAdmin>,
       },
       {
         path: "/dashboard/admin/addItems",
-        element: <AddItems />,
+        element: <PrivateAdmin><AddItems /></PrivateAdmin>,
       },
       {
         path: "/dashboard/admin/manageItems",
-        element: <ManageItems />,
+        element: <PrivateAdmin><ManageItems /></PrivateAdmin>,
       },
       {
         path: "/dashboard/admin/manageBookings",
-        element: <ManageBooking />,
+        element: <PrivateAdmin><ManageBooking /></PrivateAdmin>,
       },
       {
         path: "/dashboard/admin/allUsers",
-        element: <AllUsers />,
+        element: <PrivateAdmin><AllUsers /></PrivateAdmin>,
       },
     ],
   },
