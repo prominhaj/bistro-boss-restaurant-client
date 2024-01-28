@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../Pages/Shared/Header/Header";
 import Footer from "../Pages/Shared/Footer/Footer";
-import { ChakraProvider, Spinner } from "@chakra-ui/react";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Main = () => {
@@ -10,7 +9,7 @@ const Main = () => {
   return (
     <>
       {loading && (
-        <div className="text-center flex justify-center items-center h-screen">
+        <div className="flex items-center justify-center h-screen text-center">
           <div role="status">
             <svg
               aria-hidden="true"
@@ -33,9 +32,7 @@ const Main = () => {
         </div>
       )}
       <Header />
-      <ChakraProvider>
         <Outlet />
-      </ChakraProvider>
       <Footer />
     </>
   );

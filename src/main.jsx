@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ChakraProvider } from "@chakra-ui/react";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -16,7 +17,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <ChakraProvider>
+          <RouterProvider router={router} />
+        </ChakraProvider>
         <ToastContainer
           position="top-right"
           autoClose={5000}
