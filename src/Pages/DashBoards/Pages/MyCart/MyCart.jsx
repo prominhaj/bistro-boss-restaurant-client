@@ -68,9 +68,11 @@ const MyCart = () => {
   };
 
   const priceBodyTemplate = (item) => {
-    return <div>
-      <h2>${item.price}</h2>
-    </div>
+    return (
+      <div>
+        <h2>${item.price}</h2>
+      </div>
+    );
   };
 
   const actionBodyTemplate = (item) => {
@@ -99,14 +101,14 @@ const MyCart = () => {
       <section>
         <div className="py-10 sm:px-[20px] lg:px-[50px] xl:px-[100px]">
           <div className="bg-[#F6F6F6] p-10 rounded">
-            <div className="flex items-center justify-between">
-              <h2 className="text-neutral-900 text-[25px] md:text-[32px] font-bold font-['Cinzel']">
+            <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
+              <h2 className="text-neutral-900 text-[20px] sm:text-[25px] md:text-[32px] font-bold font-['Cinzel']">
                 Total orders: {cart.length}
               </h2>
-              <h2 className="text-neutral-900 text-[25px] md:text-[32px] font-bold font-['Cinzel']">
+              <h2 className="text-neutral-900 text-[20px] sm:text-[25px] md:text-[32px] font-bold font-['Cinzel']">
                 total price: ${totalPrice}
               </h2>
-              <Link className="px-[17px] py-3.5 bg-[#D1A054] rounded-lg justify-start items-start gap-2.5 inline-flex text-white text-base sm:text-xl font-bold font-['Cinzel']">
+              <Link className="px-3 sm:px-[17px] py-2.5 sm:py-3.5 bg-[#D1A054] rounded-lg justify-start items-start gap-2.5 inline-flex text-white text-base sm:text-xl font-bold font-['Cinzel']">
                 Pay
               </Link>
             </div>
