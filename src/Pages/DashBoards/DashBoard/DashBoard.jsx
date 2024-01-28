@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import LeftMenu from "../LeftMenu/LeftMenu";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import useAdmin from "../../../hook/useAdmin/useAdmin";
 
 const DashBoard = () => {
   const [isAdmin] = useAdmin();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(location.pathname === '/dashboard'){
+      navigate('/dashboard/home')
+    }
+  }, []);
 
   return (
     <>

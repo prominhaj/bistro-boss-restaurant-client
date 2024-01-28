@@ -14,7 +14,7 @@ const userDashBoardMenus = [
     id: 1,
     name: "User Home",
     icon: <IoMdHome className="text-4xl lg:text-2xl" />,
-    to: "/dashboard",
+    to: "/dashboard/home",
   },
   {
     id: 2,

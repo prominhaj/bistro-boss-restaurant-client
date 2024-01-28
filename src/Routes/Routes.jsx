@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/dashboard",
+        path: "/dashboard/home",
         element: (
           <PrivateRoute>
             <DashBoardHome />{" "}
