@@ -9,7 +9,6 @@ import { Button } from "primereact/button";
 import swal from "sweetalert";
 import useAxiosSecure from "../../../../hook/useAxiosSecure/useAxiosSecure";
 
-
 const AllUsers = () => {
   const [axiosSecure] = useAxiosSecure();
 

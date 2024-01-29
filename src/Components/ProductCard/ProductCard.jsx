@@ -33,18 +33,18 @@ const ProductCard = ({ item }) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col justify-between">
       <div className="relative">
         <img className="w-full h-[300px] object-cover" src={image} alt="" />
         <h4 className="text-center text-white text-base font-semibold font-['Inter'] leading-relaxed py-2 px-5 bg-gray-900 absolute right-5 top-5 rounded">
           ${price}
         </h4>
       </div>
-      <div className="bg-zinc-100 py-[30px] px-[40px]">
+      <div className="flex flex-col justify-between bg-zinc-100 py-[30px] px-[40px] flex-grow">
         <h2 className="text-center mb-[8px] text-neutral-900 text-xl sm:text-2xl font-semibold font-['Inter']">
           {name}
         </h2>
-        <p className="text-start text-neutral-900 text-base font-normal font-['Inter'] leading-relaxed">
+        <p className="flex-grow text-start text-neutral-900 text-base font-normal font-['Inter'] leading-relaxed">
           {recipe.length > 80 ? recipe.slice(0, 80) + "..." : recipe}
         </p>
         <div className="text-center">
