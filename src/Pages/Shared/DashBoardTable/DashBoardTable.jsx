@@ -2,7 +2,19 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 
-const DashBoardTable = ({data, header1, header2, header3, header4, header5, item1BodyTemp, item2BodyTemp, item3BodyTemp, item4BodyTemp, item5BodyTemp}) => {
+const DashBoardTable = ({
+  data,
+  header1,
+  header2,
+  header3,
+  header4,
+  header5,
+  item1BodyTemp,
+  item2BodyTemp,
+  item3BodyTemp,
+  item4BodyTemp,
+  item5BodyTemp,
+}) => {
   const paginatorLeft = <Button type="button" icon="pi pi-refresh" text />;
   const paginatorRight = <Button type="button" icon="pi pi-download" text />;
 
@@ -29,7 +41,7 @@ const DashBoardTable = ({data, header1, header2, header3, header4, header5, item
         <Column header={header2} body={item2BodyTemp}></Column>
         <Column header={header3} body={item3BodyTemp}></Column>
         <Column header={header4} body={item4BodyTemp}></Column>
-        <Column header={header5} body={item5BodyTemp}></Column>
+        {header5 && <Column header={header5} body={item5BodyTemp}></Column>}
       </DataTable>
     </div>
   );

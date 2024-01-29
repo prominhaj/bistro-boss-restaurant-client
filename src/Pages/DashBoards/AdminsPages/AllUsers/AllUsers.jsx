@@ -1,13 +1,11 @@
 import { useQuery } from "react-query";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
 import "./AllUsers.css";
 import { FaUsers } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
 import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
-import { Button } from "primereact/button";
 import swal from "sweetalert";
 import useAxiosSecure from "../../../../hook/useAxiosSecure/useAxiosSecure";
+import DashBoardTable from "../../../Shared/DashBoardTable/DashBoardTable";
 
 const AllUsers = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -85,8 +83,6 @@ const AllUsers = () => {
     );
   };
 
-  const paginatorLeft = <Button type="button" icon="pi pi-refresh" text />;
-  const paginatorRight = <Button type="button" icon="pi pi-download" text />;
 
   return (
     <div>
@@ -94,28 +90,7 @@ const AllUsers = () => {
       <SectionTitle subHading="How many??" hading="MANAGE ALL USERS" />
 
       <div className="py-10 sm:px-[20px] lg:px-[50px] xl:px-[100px]">
-        <DataTable
-          paginator
-          rows={5}
-          rowsPerPageOptions={[5, 10, 25, 50]}
-          paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-          currentPageReportTemplate="{first} to {last} of {totalRecords}"
-          paginatorLeft={paginatorLeft}
-          paginatorRight={paginatorRight}
-          value={users}
-          pt={{
-            headerRow: {
-              className: "!bg-[#D1A054] !rounded-tl-[15px] !rounded-tr-[15px]",
-            },
-            bodyRow: { className: "!py-5 border-b border-gray-200" },
-          }}
-          tableStyle={{ minWidth: "60rem" }}
-        >
-          <Column header="NAME" body={nameBodyTemplate}></Column>
-          <Column header="EMAIL" body={emailBodyTemplate}></Column>
-          <Column header="ROLE" body={roleBodyTemplate}></Column>
-          <Column header="ACTION" body={actionBodyTemplate}></Column>
-        </DataTable>
+        <DashBoardTable data={users} header1="# NAME" header2="EMAIL" header3="ROLE" header4="ACTION" item1BodyTemp={nameBodyTemplate} item2BodyTemp={emailBodyTemplate} item3BodyTemp={roleBodyTemplate} item4BodyTemp={actionBodyTemplate} />
       </div>
     </div>
   );
