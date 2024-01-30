@@ -9,11 +9,6 @@ import { useForm } from "react-hook-form";
 import { IoRestaurant } from "react-icons/io5";
 
 const AddItemForm = ({ onAddItem, register, handleSubmit, errors }) => {
-  //   const {
-  //     register,
-  //     formState: { errors },
-  //     handleSubmit,
-  //   } = useForm();
 
   return (
     <form

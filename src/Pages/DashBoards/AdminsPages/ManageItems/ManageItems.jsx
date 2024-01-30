@@ -2,17 +2,23 @@ import { useQuery } from "react-query";
 import DashBoardTable from "../../../Shared/DashBoardTable/DashBoardTable";
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
+import swal from "sweetalert";
+import useAxiosSecure from "../../../../hook/useAxiosSecure/useAxiosSecure";
 
 const ManageItems = () => {
-  const { data: menu = [], isLoading: loading } = useQuery({
+  const [axiosSecure] = useAxiosSecure();
+
+  const {
+    data: menu = [],
+    isLoading: loading,
+    refetch,
+  } = useQuery({
     queryKey: ["menu"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/menu");
       return res.json();
     },
   });
-
-  console.log(menu);
 
   const imageBodyTemplate = (product, index) => {
     return (
@@ -59,10 +65,34 @@ const ManageItems = () => {
     );
   };
 
-  const actionBodyTemplate = () => {
+  const actionBodyTemplate = (product) => {
+    const handleDelete = (item) => {
+      swal({
+        title: "Are you sure?",
+        text: `Delete ${item.name} ?`,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          axiosSecure.delete(`/menu/${item._id}`).then((res) => {
+            if (res.data.deletedCount > 0) {
+              refetch();
+              swal("SuccessFull Delete", {
+                icon: "success",
+              });
+            }
+          });
+        }
+      });
+    };
+
     return (
       <div>
-        <button className="p-3 rounded bg-[#B91C1C]">
+        <button
+          onClick={() => handleDelete(product)}
+          className="p-3 rounded bg-[#B91C1C]"
+        >
           <FaRegTrashAlt className="text-2xl text-white" />
         </button>
       </div>
