@@ -8,9 +8,12 @@ const DashBoard = () => {
   const [isAdmin, isAdminLoading] = useAdmin();
   const location = useLocation();
   const navigate = useNavigate();
-  
+
   useEffect(() => {
-    if (location.pathname === "/dashboard") {
+    if (
+      location.pathname === "/dashboard" ||
+      location.pathname === "/dashboard/"
+    ) {
       if (isAdmin || isAdminLoading) {
         return navigate("/dashboard/admin/home");
       } else {

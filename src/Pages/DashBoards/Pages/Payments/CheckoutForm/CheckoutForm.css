@@ -1,0 +1,5 @@
+@media (max-width: 576px) {
+  .InputElement {
+    font-size: 16px !important;
+  }
+}

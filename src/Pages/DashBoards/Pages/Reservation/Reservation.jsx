@@ -26,7 +26,7 @@ const Reservation = () => {
 
       {/* Book Table */}
       <section className="py-10">
-        <form className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+        <form className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 sm:gap-6">
           <div>
             <label
               className="text-neutral-700 text-xl font-semibold font-['Inter'] block mb-3"
@@ -94,7 +94,7 @@ const Reservation = () => {
             <Select
               name="guest"
               defaultValue={"person1"}
-              className="w-full border border-slate-200 rounded py-3 text-gray-600 text-base font-normal font-['Inter'] "
+              className="w-full border pt-0 border-slate-200 rounded py-3 text-gray-600 text-base font-normal font-['Inter'] "
               id="guest"
             >
               <option value="person1">1 Person</option>
@@ -145,7 +145,7 @@ const Reservation = () => {
               placeholder="Email"
             />
           </div>
-          <div className="col-span-1 md:col-span-2 lg:col-span-3 flex justify-center">
+          <div className="flex justify-center col-span-1 md:col-span-2 lg:col-span-3">
             <button
               className="flex items-center gap-2 text-white sm:text-xl font-bold font-['Inter'] bg-gradient-to-r text-base from-yellow-800 to-yellow-600 py-3 sm:py-4 px-5 sm:px-7 rounded"
               type="submit"
@@ -159,7 +159,7 @@ const Reservation = () => {
       {/* Our Location */}
       {/* Section Title */}
       <SectionTitle subHading="Visit Us" hading="OUR LOCATION" />
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center gap-6 py-10">
+      <section className="grid items-center justify-center grid-cols-1 gap-6 py-10 md:grid-cols-2 lg:grid-cols-3">
         {
           locations.map(item => <OurLocationItem key={item._id} item={item} />)
         }

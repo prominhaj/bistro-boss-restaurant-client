@@ -23,6 +23,7 @@ import ManageItems from "../Pages/DashBoards/AdminsPages/ManageItems/ManageItems
 import ManageBooking from "../Pages/DashBoards/AdminsPages/ManageBooking/ManageBooking";
 import AllUsers from "../Pages/DashBoards/AdminsPages/AllUsers/AllUsers";
 import PrivateAdmin from "../PrivateRoute/PrivateAdmin";
+import Payment from "../Pages/DashBoards/Pages/Payments/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -108,27 +109,54 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-
+      {
+        path: "/dashboard/payment",
+        element: (
+          <PrivateRoute>
+            <Payment />{" "}
+          </PrivateRoute>
+        ),
+      },
       // Admin Routes
       {
         path: "/dashboard/admin/home",
-        element: <PrivateAdmin><AdminDashBoard /></PrivateAdmin>,
+        element: (
+          <PrivateAdmin>
+            <AdminDashBoard />
+          </PrivateAdmin>
+        ),
       },
       {
         path: "/dashboard/admin/addItems",
-        element: <PrivateAdmin><AddItems /></PrivateAdmin>,
+        element: (
+          <PrivateAdmin>
+            <AddItems />
+          </PrivateAdmin>
+        ),
       },
       {
         path: "/dashboard/admin/manageItems",
-        element: <PrivateAdmin><ManageItems /></PrivateAdmin>,
+        element: (
+          <PrivateAdmin>
+            <ManageItems />
+          </PrivateAdmin>
+        ),
       },
       {
         path: "/dashboard/admin/manageBookings",
-        element: <PrivateAdmin><ManageBooking /></PrivateAdmin>,
+        element: (
+          <PrivateAdmin>
+            <ManageBooking />
+          </PrivateAdmin>
+        ),
       },
       {
         path: "/dashboard/admin/allUsers",
-        element: <PrivateAdmin><AllUsers /></PrivateAdmin>,
+        element: (
+          <PrivateAdmin>
+            <AllUsers />
+          </PrivateAdmin>
+        ),
       },
     ],
   },

@@ -6,7 +6,6 @@ import swal from "sweetalert";
 
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { FaUsers } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { Button } from "primereact/button";
 
@@ -99,44 +98,54 @@ const MyCart = () => {
       <SectionTitle subHading="My Cart" hading="WANNA ADD MORE?" />
 
       <section>
-        <div className="py-10 sm:px-[20px] lg:px-[50px] xl:px-[100px]">
-          <div className="bg-[#F6F6F6] p-10 rounded">
-            <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
-              <h2 className="text-neutral-900 text-[20px] sm:text-[25px] md:text-[32px] font-bold font-['Cinzel']">
-                Total orders: {cart.length}
-              </h2>
-              <h2 className="text-neutral-900 text-[20px] sm:text-[25px] md:text-[32px] font-bold font-['Cinzel']">
-                total price: ${totalPrice}
-              </h2>
-              <Link className="px-3 sm:px-[17px] py-2.5 sm:py-3.5 bg-[#D1A054] rounded-lg justify-start items-start gap-2.5 inline-flex text-white text-base sm:text-xl font-bold font-['Cinzel']">
-                Pay
-              </Link>
+        {cart.length > 0 ? (
+          <>
+            <div className="py-10 sm:px-[20px] lg:px-[50px] xl:px-[100px]">
+              <div className="bg-[#F6F6F6] p-10 rounded">
+                <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
+                  <h2 className="text-neutral-900 text-[20px] sm:text-[25px] md:text-[32px] font-bold font-['Cinzel']">
+                    Total orders: {cart.length}
+                  </h2>
+                  <h2 className="text-neutral-900 text-[20px] sm:text-[25px] md:text-[32px] font-bold font-['Cinzel']">
+                    total price: ${totalPrice}
+                  </h2>
+                  <Link to="/dashboard/payment" className="px-3 sm:px-[17px] py-2.5 sm:py-3.5 bg-[#D1A054] rounded-lg justify-start items-start gap-2.5 inline-flex text-white text-base sm:text-xl font-bold font-['Cinzel']">
+                    Pay
+                  </Link>
+                </div>
+              </div>
+              <DataTable
+                paginator
+                rows={5}
+                rowsPerPageOptions={[5, 10, 25, 50]}
+                paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+                currentPageReportTemplate="{first} to {last} of {totalRecords}"
+                paginatorLeft={paginatorLeft}
+                paginatorRight={paginatorRight}
+                value={cart}
+                pt={{
+                  headerRow: {
+                    className:
+                      "!bg-[#D1A054] !rounded-tl-[15px] !rounded-tr-[15px]",
+                  },
+                  bodyRow: { className: "!py-5 border-b border-gray-200" },
+                }}
+                tableStyle={{ minWidth: "60rem" }}
+              >
+                <Column header="# ITEM IMAGE" body={imageBodyTemplate}></Column>
+                <Column header="NAME" body={nameBodyTemplate}></Column>
+                <Column header="PRICE" body={priceBodyTemplate}></Column>
+                <Column header="ACTION" body={actionBodyTemplate}></Column>
+              </DataTable>
             </div>
-          </div>
-          <DataTable
-            paginator
-            rows={5}
-            rowsPerPageOptions={[5, 10, 25, 50]}
-            paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-            currentPageReportTemplate="{first} to {last} of {totalRecords}"
-            paginatorLeft={paginatorLeft}
-            paginatorRight={paginatorRight}
-            value={cart}
-            pt={{
-              headerRow: {
-                className:
-                  "!bg-[#D1A054] !rounded-tl-[15px] !rounded-tr-[15px]",
-              },
-              bodyRow: { className: "!py-5 border-b border-gray-200" },
-            }}
-            tableStyle={{ minWidth: "60rem" }}
-          >
-            <Column header="# ITEM IMAGE" body={imageBodyTemplate}></Column>
-            <Column header="NAME" body={nameBodyTemplate}></Column>
-            <Column header="PRICE" body={priceBodyTemplate}></Column>
-            <Column header="ACTION" body={actionBodyTemplate}></Column>
-          </DataTable>
-        </div>
+          </>
+        ) : (
+          <>
+            <div className="mt-10 text-center">
+              <h1 className="text-4xl font-semibold opacity-80">Cart Is Empty</h1>
+            </div>
+          </>
+        )}
       </section>
     </>
   );
