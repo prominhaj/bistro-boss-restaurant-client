@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../../hook/useAxiosSecure/useAxiosSecure";
 import useAuth from "../../../../../hook/useAuth/useAuth";
+import { Spinner } from "@chakra-ui/react";
 
 const CheckoutForm = ({ cart, price }) => {
   const [axiosSecure] = useAxiosSecure();
@@ -15,27 +16,15 @@ const CheckoutForm = ({ cart, price }) => {
   const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
-    axiosSecure.post("/create-payment-intent", { price }).then((res) => {
-      setClientSecret(res.data.clientSecret);
-    });
-  }, []);
+    if (price > 0) {
+      axiosSecure.post("/create-payment-intent", { price }).then((res) => {
+        setClientSecret(res.data.clientSecret);
+      });
+    }
+  }, [axiosSecure, price]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // swal(
-    //   {
-    //     title: "Are you sure?",
-    //     text: "You will not be able to recover this imaginary file!",
-    //     type: "warning",
-    //     showCancelButton: true,
-    //     confirmButtonColor: "#DD6B55",
-    //     confirmButtonText: "Yes, delete it!",
-    //     closeOnConfirm: false,
-    //   },
-    //   function () {
-    //     // swal("Deleted!", "Your imaginary file has been deleted.", "success");
-    //   }
-    // );
     if (!stripe || !elements) {
       return;
     }
@@ -71,7 +60,7 @@ const CheckoutForm = ({ cart, price }) => {
       });
 
     if (confirmError) {
-      console.log(confirmError);
+      toast.error(confirmError.message);
     }
     setProcessing(false);
     if (paymentIntent.status === "succeeded") {
@@ -79,12 +68,14 @@ const CheckoutForm = ({ cart, price }) => {
         email: user?.email,
         transactionId: paymentIntent.id,
         price,
+        date: new Date(),
         quantity: cart.length,
-        items: cart.map((item) => item._id),
+        cartItems: cart.map((item) => item._id),
+        menuItems: cart.map((item) => item.itemId),
         itemNames: cart.map((item) => item.name),
       };
       axiosSecure.post("/payments", payment).then((res) => {
-        if (res.data.insertedId) {
+        if (res.data.insertResult.insertedId) {
           toast.success("Payment SuccessFull");
         }
       });
@@ -93,6 +84,13 @@ const CheckoutForm = ({ cart, price }) => {
 
   return (
     <div className="pt-10">
+      {processing && (
+        <>
+          <div className="mb-4">
+            <Spinner />
+          </div>
+        </>
+      )}
       <form onSubmit={handleSubmit}>
         <CardElement
           className="px-3 py-4 shadow-2xl"
