@@ -6,17 +6,22 @@ import { Link, NavLink } from "react-router-dom";
 import header_logo from "../../../assets/header-logo.png";
 import { TiShoppingCart } from "react-icons/ti";
 import { Badge } from "primereact/badge";
-import { AuthContext } from "../../../Provider/AuthProvider";
 import useCart from "../../../hook/useCart/useCart";
+import useAuth from "../../../hook/useAuth/useAuth";
+import useAdmin from "../../../hook/useAdmin/useAdmin";
 
 const Header = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useAuth();
+  const [isAdmin] = useAdmin();
   const [cart] = useCart();
-  
+
   const navigation = [
     { name: "Home", to: "/" },
     { name: "Contact Us", to: "/contact" },
-    { name: "Dashboard", to: "/dashboard" },
+    {
+      name: "Dashboard",
+      to: isAdmin ? "/dashboard/admin/home" : "/dashboard/home",
+    },
     { name: "Our Menu", to: "/menu" },
     { name: "Our Shop", to: "/shop/salad" },
   ];
@@ -78,7 +83,10 @@ const Header = () => {
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 lg:static lg:inset-auto sm:ml-6 sm:pr-0">
                   {user ? (
                     <>
-                      <Link to="/dashboard/cart" className="bg-[#006837] relative p-[5px] rounded-full border border-[#F7931E]">
+                      <Link
+                        to="/dashboard/cart"
+                        className="bg-[#006837] relative p-[5px] rounded-full border border-[#F7931E]"
+                      >
                         <TiShoppingCart className="text-3xl text-white" />
                         <span className="absolute -right-1 -bottom-2">
                           <Badge value={cart.length} severity="danger"></Badge>
@@ -97,7 +105,9 @@ const Header = () => {
                             ) : (
                               <div className="avatar online placeholder">
                                 <div className="w-10 rounded-full bg-neutral text-neutral-content">
-                                  <span className="text-xl">{user?.displayName?.slice(0, 2)}</span>
+                                  <span className="text-xl">
+                                    {user?.displayName?.slice(0, 2)}
+                                  </span>
                                 </div>
                               </div>
                             )}
