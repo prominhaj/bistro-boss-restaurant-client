@@ -2,8 +2,20 @@ import walletImg from "../../../../assets/dashboard/Home/wallet.svg";
 import customer from "../../../../assets/dashboard/Admin Home/customer 1.svg";
 import products from "../../../../assets/dashboard/Admin Home/chef 1.svg";
 import trucks from "../../../../assets/dashboard/Admin Home/truck 1.svg";
+import useAxiosSecure from "../../../../hook/useAxiosSecure/useAxiosSecure";
+import { useQuery } from "react-query";
 
 const AdminDashBoard = () => {
+  const [axiosSecure] = useAxiosSecure();
+
+  const { data: stats = [] } = useQuery({
+    queryKey: ["admin-stats"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/admin-stats");
+      return res.data;
+    },
+  });
+
   return (
     <div>
       <h1 className="text-neutral-900 text-[32px] font-semibold font-['Cinzel']">
@@ -14,7 +26,7 @@ const AdminDashBoard = () => {
           <img src={walletImg} alt="" />
           <div className="flex flex-col">
             <h2 className="text-white text-[30px] sm:text-[40px] font-extrabold font-['Inter']">
-              205
+              ${stats.total}
             </h2>
             <h6 className="text-white text-xl sm:text-2xl font-normal font-['Inter']">
               Revenue
@@ -25,7 +37,7 @@ const AdminDashBoard = () => {
           <img src={customer} alt="" />
           <div className="flex flex-col">
             <h2 className="text-white text-[30px] sm:text-[40px] font-extrabold font-['Inter']">
-              103
+              {stats.users}
             </h2>
             <h6 className="text-white text-xl sm:text-2xl font-normal font-['Inter']">
               Customers
@@ -36,7 +48,7 @@ const AdminDashBoard = () => {
           <img src={products} alt="" />
           <div className="flex flex-col">
             <h2 className="text-white text-[30px] sm:text-[40px] font-extrabold font-['Inter']">
-              03
+              {stats.products}
             </h2>
             <h6 className="text-white text-xl sm:text-2xl font-normal font-['Inter']">
               Products
@@ -47,7 +59,7 @@ const AdminDashBoard = () => {
           <img src={trucks} alt="" />
           <div className="flex flex-col">
             <h2 className="text-white text-[30px] sm:text-[40px] font-extrabold font-['Inter']">
-              03
+              {stats.orders}
             </h2>
             <h6 className="text-white text-xl sm:text-2xl font-normal font-['Inter']">
               Orders
