@@ -11,16 +11,19 @@ const useAxiosSecure = () => {
   const { logOut } = useAuth();
 
   useEffect(() => {
-    axiosSecure.interceptors.request.use(function (config) {
-      const token = localStorage.getItem("access-token");
-      if (token) {
+    axiosSecure.interceptors.request.use(
+      (config) => {
+        const token = localStorage.getItem("access-token");
         config.headers.authorization = `Bearer ${token}`;
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
       }
-      return config;
-    });
+    );
 
     axiosSecure.interceptors.response.use(
-      function (response) {
+      (response) => {
         return response;
       },
       async (error) => {
@@ -33,7 +36,7 @@ const useAxiosSecure = () => {
         return Promise.reject(error);
       }
     );
-  }, []);
+  }, [navigate, logOut]);
 
   return [axiosSecure];
 };
