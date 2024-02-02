@@ -18,10 +18,10 @@ const AdminBarChart = ({ data }) => {
 
     return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
   };
-  
   return (
-    <div>
+    <div className="w-full">
       <BarChart
+        className="w-full h-full"
         width={600}
         height={400}
         data={data}
@@ -36,7 +36,7 @@ const AdminBarChart = ({ data }) => {
         <XAxis dataKey="category" />
         <YAxis />
         <Bar
-          dataKey="total"
+          dataKey="quantity"
           fill="#8884d8"
           shape={<TriangleBar />}
           label={{ position: "top" }}

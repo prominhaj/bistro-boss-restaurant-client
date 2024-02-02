@@ -28,7 +28,7 @@ const AdminPieChart = ({ data }) => {
       </text>
     );
   };
-  console.log(data);
+
   return (
     <div className="w-full h-full">
       <ResponsiveContainer width="100%" height="100%">
@@ -45,6 +45,7 @@ const AdminPieChart = ({ data }) => {
           >
             {data.map((entry, index) => (
               <Cell
+                name={entry.category}
                 key={`cell-${index}`}
                 fill={COLORS[index % COLORS.length]}
               />

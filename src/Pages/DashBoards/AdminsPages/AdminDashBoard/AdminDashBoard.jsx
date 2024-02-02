@@ -77,7 +77,7 @@ const AdminDashBoard = () => {
           </div>
         </div>
       </div>
-      <section className="grid md:grid-cols-2">
+      <section className="grid lg:grid-cols-2">
         <div className="w-full h-full">
           <AdminBarChart data={chartDetails} />
         </div>
