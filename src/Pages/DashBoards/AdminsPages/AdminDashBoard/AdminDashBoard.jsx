@@ -4,14 +4,24 @@ import products from "../../../../assets/dashboard/Admin Home/chef 1.svg";
 import trucks from "../../../../assets/dashboard/Admin Home/truck 1.svg";
 import useAxiosSecure from "../../../../hook/useAxiosSecure/useAxiosSecure";
 import { useQuery } from "react-query";
+import AdminBarChart from "./Charts/AdminBarChart";
+import AdminPieChart from "./Charts/AdminPieChart";
 
 const AdminDashBoard = () => {
   const [axiosSecure] = useAxiosSecure();
 
-  const { data: stats = [] } = useQuery({
+  const { data: stats = {} } = useQuery({
     queryKey: ["admin-stats"],
     queryFn: async () => {
       const res = await axiosSecure.get("/admin-stats");
+      return res.data;
+    },
+  });
+
+  const { data: chartDetails = [] } = useQuery({
+    queryKey: ["chartData"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/order-stats");
       return res.data;
     },
   });
@@ -67,6 +77,14 @@ const AdminDashBoard = () => {
           </div>
         </div>
       </div>
+      <section className="grid md:grid-cols-2">
+        <div className="w-full h-full">
+          <AdminBarChart data={chartDetails} />
+        </div>
+        <div className="w-full h-full">
+          <AdminPieChart data={chartDetails} />
+        </div>
+      </section>
     </div>
   );
 };
