@@ -24,6 +24,7 @@ import ManageBooking from "../Pages/DashBoards/AdminsPages/ManageBooking/ManageB
 import AllUsers from "../Pages/DashBoards/AdminsPages/AllUsers/AllUsers";
 import PrivateAdmin from "../PrivateRoute/PrivateAdmin";
 import Payment from "../Pages/DashBoards/Pages/Payments/Payment/Payment";
+import UpdateProduct from "../Pages/DashBoards/AdminsPages/UpdateProduct/UpdateProduct";
 
 export const router = createBrowserRouter([
   {
@@ -157,6 +158,16 @@ export const router = createBrowserRouter([
             <AllUsers />
           </PrivateAdmin>
         ),
+      },
+      {
+        path: "/dashboard/admin/update/:id",
+        element: (
+          <PrivateAdmin>
+            <UpdateProduct />
+          </PrivateAdmin>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/menu-item/${params.id}`),
       },
     ],
   },

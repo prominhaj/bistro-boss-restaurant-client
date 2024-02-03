@@ -112,7 +112,7 @@ const ManageBooking = () => {
   return (
     <div>
       <SectionTitle subHading="At a Glance!" hading="ALL BOOKINGS" />
-      <section className="py-10">
+      <section className="py-10 lg:px-10">
         <div>
           <DashBoardTable
             data={history}

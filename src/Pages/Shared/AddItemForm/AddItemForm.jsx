@@ -5,11 +5,16 @@ import {
   Select,
   Textarea,
 } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
 import { IoRestaurant } from "react-icons/io5";
 
-const AddItemForm = ({ onAddItem, register, handleSubmit, errors }) => {
-
+const AddItemForm = ({
+  onAddItem,
+  register,
+  handleSubmit,
+  errors,
+  update,
+  updateValue,
+}) => {
   return (
     <form
       onSubmit={handleSubmit(onAddItem)}
@@ -21,6 +26,7 @@ const AddItemForm = ({ onAddItem, register, handleSubmit, errors }) => {
         </FormLabel>
         <Input
           {...register("name", { required: true })}
+          defaultValue={updateValue?.name || ""}
           size={"lg"}
           className="!bg-white border border-gray-200 rounded-lg text-neutral-800 text-xl font-normal font-['Inter']"
           type="text"
@@ -34,15 +40,16 @@ const AddItemForm = ({ onAddItem, register, handleSubmit, errors }) => {
         </FormLabel>
         <Select
           {...register("category", { required: true })}
+          defaultValue={updateValue?.category || ""}
           className="!bg-white border !pt-0 border-gray-200 rounded-lg text-neutral-800 text-xl font-normal font-['Inter']"
           size={"lg"}
           placeholder="Category"
         >
-          <option>Salad</option>
-          <option>Pizza</option>
-          <option>Soup</option>
-          <option>Dessert</option>
-          <option>Popular</option>
+          <option value="salad">Salad</option>
+          <option value="pizza">Pizza</option>
+          <option value="soup">Soup</option>
+          <option value="dessert">Dessert</option>
+          <option value="popular">Popular</option>
         </Select>
         {errors.category && (
           <p className="text-red-500">Category is required</p>
@@ -54,6 +61,7 @@ const AddItemForm = ({ onAddItem, register, handleSubmit, errors }) => {
         </FormLabel>
         <Input
           {...register("price", { required: true })}
+          defaultValue={updateValue?.price || ""}
           size={"lg"}
           className="!bg-white border border-gray-200 rounded-lg text-neutral-800 text-base sm:text-xl font-normal font-['Inter']"
           type="number"
@@ -67,6 +75,7 @@ const AddItemForm = ({ onAddItem, register, handleSubmit, errors }) => {
         </FormLabel>
         <Textarea
           {...register("recipe", { required: true })}
+          defaultValue={updateValue?.recipe || ""}
           rows={6}
           className="!bg-white border border-gray-200 rounded-lg text-neutral-800 text-base sm:text-xl font-normal font-['Inter']"
           size={"lg"}
@@ -76,20 +85,30 @@ const AddItemForm = ({ onAddItem, register, handleSubmit, errors }) => {
           <p className="text-red-500">Recipe Details is required</p>
         )}
       </FormControl>
-      <FormControl>
-        <Input
-          {...register("image", { required: true })}
-          size={"lg"}
-          className="text-neutral-800 text-base sm:text-xl font-normal font-['Inter']"
-          type="file"
-          placeholder="Price"
-        />
-        {errors.image && <p className="text-red-500">Image is required</p>}
-      </FormControl>
+      {!update && (
+        <FormControl>
+          <Input
+            {...register("image", { required: true })}
+            size={"lg"}
+            className="text-neutral-800 text-base sm:text-xl font-normal font-['Inter']"
+            type="file"
+            placeholder="Price"
+          />
+          {errors.image && <p className="text-red-500">Image is required</p>}
+        </FormControl>
+      )}
       <div className="md:mt-2 md:col-span-2">
-        <button className="flex items-center gap-2 sm:gap-3 text-white text-xl font-bold font-['Inter'] bg-gradient-to-r from-yellow-800 to-yellow-600 py-2 sm:py-3 px-4 sm:px-6 rounded">
-          Add Item <IoRestaurant />
-        </button>
+        {update ? (
+          <div className="text-center">
+            <button className="bg-gradient-to-r from-yellow-800 to-yellow-600 text-white py-2 sm:py-3 px-3 sm:px-5 rounded sm:text-xl font-bold font-['Inter']">
+              Update Recipe Details
+            </button>
+          </div>
+        ) : (
+          <button className="flex items-center gap-2 sm:gap-3 text-white text-xl font-bold font-['Inter'] bg-gradient-to-r from-yellow-800 to-yellow-600 py-2 sm:py-3 px-4 sm:px-6 rounded">
+            Add Item <IoRestaurant />
+          </button>
+        )}
       </div>
     </form>
   );

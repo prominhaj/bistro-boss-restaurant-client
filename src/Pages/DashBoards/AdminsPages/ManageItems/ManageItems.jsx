@@ -4,6 +4,7 @@ import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
 import swal from "sweetalert";
 import useAxiosSecure from "../../../../hook/useAxiosSecure/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const ManageItems = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -58,8 +59,13 @@ const ManageItems = () => {
   const updateBodyTemplate = (product) => {
     return (
       <div>
-        <button className="bg-orange-400 rounded-[5px] p-3 pt-[10px] pr-[10px] flex  items-center justify-center">
-          <FaRegEdit className="text-2xl text-white" />
+        <button>
+          <Link
+            to={`/dashboard/admin/update/${product._id}`}
+            className="bg-orange-400 rounded-[5px] p-3 pt-[10px] pr-[10px] flex items-center justify-center"
+          >
+            <FaRegEdit className="text-2xl text-white" />
+          </Link>
         </button>
       </div>
     );
