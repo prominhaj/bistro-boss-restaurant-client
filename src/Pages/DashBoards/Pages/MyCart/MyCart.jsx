@@ -12,7 +12,7 @@ import { Button } from "primereact/button";
 const MyCart = () => {
   const [cart, refetch] = useCart();
 
-  const totalPrice = cart.reduce((accumulator, currentValue) => {
+  const totalPrice = cart?.reduce((accumulator, currentValue) => {
     return accumulator + currentValue.price;
   }, 0);
 
@@ -109,7 +109,10 @@ const MyCart = () => {
                   <h2 className="text-neutral-900 text-[20px] sm:text-[25px] md:text-[32px] font-bold font-['Cinzel']">
                     total price: ${totalPrice}
                   </h2>
-                  <Link to="/dashboard/payment" className="px-3 sm:px-[17px] py-2.5 sm:py-3.5 bg-[#D1A054] rounded-lg justify-start items-start gap-2.5 inline-flex text-white text-base sm:text-xl font-bold font-['Cinzel']">
+                  <Link
+                    to="/dashboard/payment"
+                    className="px-3 sm:px-[17px] py-2.5 sm:py-3.5 bg-[#D1A054] rounded-lg justify-start items-start gap-2.5 inline-flex text-white text-base sm:text-xl font-bold font-['Cinzel']"
+                  >
                     Pay
                   </Link>
                 </div>
@@ -142,7 +145,9 @@ const MyCart = () => {
         ) : (
           <>
             <div className="mt-10 text-center">
-              <h1 className="text-4xl font-semibold opacity-80">Cart Is Empty</h1>
+              <h1 className="text-4xl font-semibold opacity-80">
+                Cart Is Empty
+              </h1>
             </div>
           </>
         )}

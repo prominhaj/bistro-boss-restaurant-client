@@ -6,7 +6,7 @@ const SectionTitle = ({subHading, hading, color}) => {
       <h6 className="text-yellow-600 text-base sm:text-xl font-normal font-['Inter']">
         ---{subHading}---
       </h6>
-      <div className="border-y-4 py-2">
+      <div className="py-2 border-y-4">
         <h2 className={`text-neutral-900 text-[25px] sm:text-[40px] font-normal font-['Inter'] uppercase ${color && 'text-white'}`}>
           {hading}
         </h2>

@@ -6,13 +6,19 @@ import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
 import swal from "sweetalert";
 import useAxiosSecure from "../../../../hook/useAxiosSecure/useAxiosSecure";
 import DashBoardTable from "../../../Shared/DashBoardTable/DashBoardTable";
+import useAuth from "../../../../hook/useAuth/useAuth";
 
 const AllUsers = () => {
   const [axiosSecure] = useAxiosSecure();
+  const { loading } = useAuth();
 
-  const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await axiosSecure.get("/users");
-    return res.data;
+  const { data: users = [], refetch } = useQuery({
+    queryKey: ["users"],
+    enabled: !loading,
+    queryFn: async () => {
+      const res = await axiosSecure.get("/users");
+      return res.data;
+    },
   });
 
   // Handle Admin Role
@@ -64,7 +70,9 @@ const AllUsers = () => {
 
   const roleBodyTemplate = (product) => {
     return product.role === "admin" ? (
-      <button className="px-3 py-1 text-white rounded bg-violet-500 hover:bg-violet-600">Admin</button>
+      <button className="px-3 py-1 text-white rounded bg-violet-500 hover:bg-violet-600">
+        Admin
+      </button>
     ) : (
       <button
         onClick={() => handleAdminRole(product)}
@@ -83,14 +91,23 @@ const AllUsers = () => {
     );
   };
 
-
   return (
     <div>
       {/* section Title */}
       <SectionTitle subHading="How many??" hading="MANAGE ALL USERS" />
 
       <div className="py-10 sm:px-[20px] lg:px-[50px] xl:px-[100px]">
-        <DashBoardTable data={users} header1="# NAME" header2="EMAIL" header3="ROLE" header4="ACTION" item1BodyTemp={nameBodyTemplate} item2BodyTemp={emailBodyTemplate} item3BodyTemp={roleBodyTemplate} item4BodyTemp={actionBodyTemplate} />
+        <DashBoardTable
+          data={users}
+          header1="# NAME"
+          header2="EMAIL"
+          header3="ROLE"
+          header4="ACTION"
+          item1BodyTemp={nameBodyTemplate}
+          item2BodyTemp={emailBodyTemplate}
+          item3BodyTemp={roleBodyTemplate}
+          item4BodyTemp={actionBodyTemplate}
+        />
       </div>
     </div>
   );

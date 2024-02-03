@@ -8,11 +8,11 @@ const axiosSecure = axios.create({
 
 const useAxiosSecure = () => {
   const token = localStorage.getItem("access-token");
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const navigate = useNavigate();
   const { logOut } = useAuth();
 
-  if (user) {
+  if (!loading) {
     axiosSecure.interceptors.request.use(
       (config) => {
         config.headers.authorization = `Bearer ${token}`;
@@ -30,7 +30,7 @@ const useAxiosSecure = () => {
       async (error) => {
         const status = error.response.status;
         if (status === 401 || status === 403) {
-          logOut();
+          await logOut();
           navigate("/login");
         }
         return Promise.reject(error);

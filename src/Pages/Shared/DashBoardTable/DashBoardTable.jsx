@@ -9,11 +9,13 @@ const DashBoardTable = ({
   header3,
   header4,
   header5,
+  header6,
   item1BodyTemp,
   item2BodyTemp,
   item3BodyTemp,
   item4BodyTemp,
   item5BodyTemp,
+  item6BodyTemp,
 }) => {
   const paginatorLeft = <Button type="button" icon="pi pi-refresh" text />;
   const paginatorRight = <Button type="button" icon="pi pi-download" text />;
@@ -22,7 +24,7 @@ const DashBoardTable = ({
     <div>
       <DataTable
         paginator
-        rows={5}
+        rows={10}
         rowsPerPageOptions={[5, 10, 25, 50]}
         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
         currentPageReportTemplate="{first} to {last} of {totalRecords}"
@@ -42,6 +44,7 @@ const DashBoardTable = ({
         <Column header={header3} body={item3BodyTemp}></Column>
         <Column header={header4} body={item4BodyTemp}></Column>
         {header5 && <Column header={header5} body={item5BodyTemp}></Column>}
+        {header6 && <Column header={header6} body={item6BodyTemp}></Column>}
       </DataTable>
     </div>
   );

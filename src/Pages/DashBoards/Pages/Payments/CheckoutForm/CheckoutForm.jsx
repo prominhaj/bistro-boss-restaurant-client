@@ -68,11 +68,12 @@ const CheckoutForm = ({ cart, price }) => {
         email: user?.email,
         transactionId: paymentIntent.id,
         price,
-        date: new Date(),
+        date: new Date().toISOString().slice(0, 10),
         quantity: cart.length,
         cartItems: cart.map((item) => item._id),
         menuItems: cart.map((item) => item.itemId),
         itemNames: cart.map((item) => item.name),
+        status: "Pending",
       };
       axiosSecure.post("/payments", payment).then((res) => {
         if (res.data.insertResult.insertedId) {
