@@ -1,6 +1,9 @@
 import { useForm } from "react-hook-form";
 import AddItemForm from "../../../Shared/AddItemForm/AddItemForm";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../../../hook/useAxiosSecure/useAxiosSecure";
+import swal from "sweetalert";
+import { toast } from "react-toastify";
 
 const UpdateProduct = () => {
   const {
@@ -9,11 +12,20 @@ const UpdateProduct = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-
   const item = useLoaderData();
+  const id = item._id;
+  const [axiosSecure] = useAxiosSecure();
+  const navigate = useNavigate();
 
-  const onUpdateItem = (item) => {
-    console.log(item);
+  const onUpdateItem = async (item) => {
+    axiosSecure.put(`/menu-update/${id}`, item).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        swal("Update SuccessFull", "", "success");
+        navigate("/dashboard/admin/manageItems");
+      } else {
+        toast.error("Places Change Same Thing");
+      }
+    });
   };
 
   return (
