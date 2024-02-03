@@ -65,6 +65,7 @@ const AddItemForm = ({
           size={"lg"}
           className="!bg-white border border-gray-200 rounded-lg text-neutral-800 text-base sm:text-xl font-normal font-['Inter']"
           type="number"
+          step="any"
           placeholder="Price"
         />
         {errors.price && <p className="text-red-500">Price is required</p>}
