@@ -16,7 +16,9 @@ const DashBoardHome = () => {
   const { data: userData } = useQuery({
     queryKey: ["users-total-price"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/user-Activities?email=${user?.email}`);
+      const res = await axiosSecure.get(
+        `/user-Activities?email=${user?.email}`
+      );
       return res.data;
     },
   });
@@ -107,15 +109,16 @@ const DashBoardHome = () => {
               </li>
               <li className="text-teal-500 text-2xl font-semibold font-['Cinzel'] flex items-center gap-2">
                 <FaStar />
-                Reviews: 2
+                Reviews: {userData?.totalReviews ? userData?.totalReviews : 0}
               </li>
               <li className="text-amber-400 text-2xl font-semibold font-['Cinzel'] flex items-center gap-2">
                 <FaRegCalendarAlt />
-                Bookings: 1
+                Bookings:{" "}
+                {userData?.totalBookings ? userData?.totalBookings : 0}
               </li>
               <li className="text-orange-400 text-2xl font-semibold font-['Cinzel'] flex items-center gap-2">
                 <FaWallet />
-                Payment: 3
+                Payment: {userData?.totalOrder ? userData?.totalOrder : 0}
               </li>
             </ul>
           </div>
