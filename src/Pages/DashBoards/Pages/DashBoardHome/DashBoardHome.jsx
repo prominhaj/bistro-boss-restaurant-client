@@ -16,7 +16,7 @@ const DashBoardHome = () => {
   const { data: userData } = useQuery({
     queryKey: ["users-total-price"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/user/payments?email=${user?.email}`);
+      const res = await axiosSecure.get(`/user-Activities?email=${user?.email}`);
       return res.data;
     },
   });
@@ -103,7 +103,7 @@ const DashBoardHome = () => {
             <ul className="flex flex-col gap-2">
               <li className="text-sky-500 text-2xl font-semibold font-['Cinzel'] flex items-center gap-2">
                 <IoCart />
-                Orders: 6
+                Orders: {userData?.totalOrder ? userData?.totalOrder : 0}
               </li>
               <li className="text-teal-500 text-2xl font-semibold font-['Cinzel'] flex items-center gap-2">
                 <FaStar />
