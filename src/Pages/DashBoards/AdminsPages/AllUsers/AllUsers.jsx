@@ -83,9 +83,33 @@ const AllUsers = () => {
     );
   };
 
-  const actionBodyTemplate = () => {
+  const actionBodyTemplate = (user) => {
+    const handleDelete = (user) => {
+      swal({
+        title: "Are you sure?",
+        text: `You Wont Tow Delete User ${user.name}`,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          axiosSecure.delete(`/users/${user._id}`).then((res) => {
+            if (res.data.deletedCount) {
+              refetch();
+              swal("Delete SuccessFull", {
+                icon: "success",
+              });
+            }
+          });
+        }
+      });
+    };
+
     return (
-      <button className="p-3 rounded bg-[#B91C1C]">
+      <button
+        onClick={() => handleDelete(user)}
+        className="p-3 rounded bg-[#B91C1C]"
+      >
         <FaRegTrashAlt className="text-2xl text-white" />
       </button>
     );
