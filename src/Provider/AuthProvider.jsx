@@ -10,7 +10,6 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   GithubAuthProvider,
-  deleteUser,
 } from "firebase/auth";
 import axios from "axios";
 
@@ -50,10 +49,6 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
     });
-  };
-
-  const fbDeleteUser = (uid) => {
-    return deleteUser(uid);
   };
 
   useEffect(() => {

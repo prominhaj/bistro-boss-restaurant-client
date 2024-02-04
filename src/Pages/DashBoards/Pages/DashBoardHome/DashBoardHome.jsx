@@ -6,9 +6,21 @@ import storeImg from "../../../../assets/dashboard/Home/store.svg";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { IoCart } from "react-icons/io5";
 import { FaRegCalendarAlt, FaStar, FaWallet } from "react-icons/fa";
+import { useQuery } from "react-query";
+import useAxiosSecure from "../../../../hook/useAxiosSecure/useAxiosSecure";
 
 const DashBoardHome = () => {
   const { user } = useContext(AuthContext);
+  const [axiosSecure] = useAxiosSecure();
+
+  const { data: userData } = useQuery({
+    queryKey: ["users-total-price"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/user/payments?email=${user?.email}`);
+      return res.data;
+    },
+  });
+
   return (
     <>
       {/* Helmet */}
@@ -26,7 +38,7 @@ const DashBoardHome = () => {
           <img src={walletImg} alt="" />
           <div className="flex flex-col">
             <h2 className="text-white text-[30px] sm:text-[40px] font-extrabold font-['Inter']">
-              205
+              ${userData?.total?.totalPrice ? userData?.total?.totalPrice : 0}
             </h2>
             <h6 className="text-white text-xl sm:text-2xl font-normal font-['Inter']">
               Menu
@@ -37,7 +49,9 @@ const DashBoardHome = () => {
           <img src={telephoneImg} alt="" />
           <div className="flex flex-col">
             <h2 className="text-white text-[30px] sm:text-[40px] font-extrabold font-['Inter']">
-              103
+              {userData?.total?.totalQuantity
+                ? userData?.total?.totalQuantity
+                : 0}
             </h2>
             <h6 className="text-white text-xl sm:text-2xl font-normal font-['Inter']">
               Shop
@@ -48,10 +62,10 @@ const DashBoardHome = () => {
           <img src={storeImg} alt="" />
           <div className="flex flex-col">
             <h2 className="text-white text-[30px] sm:text-[40px] font-extrabold font-['Inter']">
-              03
+              {userData?.totalOrder ? userData?.totalOrder : 0}
             </h2>
             <h6 className="text-white text-xl sm:text-2xl font-normal font-['Inter']">
-              Contact
+              Orders
             </h6>
           </div>
         </div>
