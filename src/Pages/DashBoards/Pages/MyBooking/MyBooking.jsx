@@ -98,7 +98,7 @@ const MyBooking = () => {
       <SectionTitle subHading="Excellent Ambience" hading="MY BOOKINGS" />
       <section className="py-10 md:px-10">
         <h2 className="text-neutral-900 text-[32px] font-bold font-['Cinzel'] mb-4">
-          Total bookings: {allBookings.length}
+          Total bookings: {allBookings?.length}
         </h2>
         <div>
           <DashBoardTable

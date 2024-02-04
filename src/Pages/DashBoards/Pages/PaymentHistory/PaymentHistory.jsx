@@ -70,7 +70,7 @@ const PaymentHistory = () => {
       {/* Section Title */}
       <SectionTitle subHading="At a Glance!" hading="PAYMENT HISTORY" />
       <section className="py-10 md:px-10">
-        <h2 className="text-neutral-900 mb-4 text-[32px] font-bold font-['Cinzel']">Total Payments: {paymentHistory.length}</h2>
+        <h2 className="text-neutral-900 mb-4 text-[32px] font-bold font-['Cinzel']">Total Payments: {paymentHistory?.length}</h2>
         <div>
           <DashBoardTable
             data={paymentHistory}
