@@ -29,27 +29,35 @@ const PaymentHistory = () => {
   };
 
   const priceBodyTemp = (item) => {
-    return <div>
-      <h2>${item.price}</h2>
-    </div>
+    return (
+      <div>
+        <h2>${item.price}</h2>
+      </div>
+    );
   };
 
   const quantityBodyTemp = (item) => {
-    return <div>
-      <h2>{item.quantity}</h2>
-    </div>
+    return (
+      <div>
+        <h2>{item.quantity}</h2>
+      </div>
+    );
   };
 
   const paymentDateBodyTemp = (item) => {
-    return <div>
-      <h2>{item.date}</h2>
-    </div>
+    return (
+      <div>
+        <h2>{item.date}</h2>
+      </div>
+    );
   };
 
   const statusBodyTemp = (item) => {
-    return <div>
-      <h2>{item.status}</h2>
-    </div>
+    return (
+      <div>
+        <h2>{item.status}</h2>
+      </div>
+    );
   };
 
   return (
@@ -62,6 +70,7 @@ const PaymentHistory = () => {
       {/* Section Title */}
       <SectionTitle subHading="At a Glance!" hading="PAYMENT HISTORY" />
       <section className="py-10 md:px-10">
+        <h2 className="text-neutral-900 mb-4 text-[32px] font-bold font-['Cinzel']">Total Payments: {paymentHistory.length}</h2>
         <div>
           <DashBoardTable
             data={paymentHistory}

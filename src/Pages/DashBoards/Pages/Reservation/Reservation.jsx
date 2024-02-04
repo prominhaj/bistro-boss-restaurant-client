@@ -149,10 +149,10 @@ const Reservation = () => {
               className="w-full border pt-0 border-slate-200 rounded py-3 text-gray-600 text-base font-normal font-['Inter'] "
               id="guest"
             >
-              <option value="person1">1 Person</option>
-              <option value="person2">2 Person</option>
-              <option value="person3">3 Person</option>
-              <option value="person4">4 Person</option>
+              <option value="1">1 Person</option>
+              <option value="2">2 Person</option>
+              <option value="3">3 Person</option>
+              <option value="4">4 Person</option>
             </Select>
             {errors.guest && (
               <span className="text-red-600">Guest is Required</span>
