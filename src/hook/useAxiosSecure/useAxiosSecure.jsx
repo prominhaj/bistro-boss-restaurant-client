@@ -4,7 +4,6 @@ import useAuth from "../useAuth/useAuth";
 
 const useAxiosSecure = () => {
   const token = localStorage.getItem("access-token");
-  const { user, loading } = useAuth();
   const navigate = useNavigate();
   const { logOut } = useAuth();
 

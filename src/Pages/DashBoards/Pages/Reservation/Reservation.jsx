@@ -10,23 +10,48 @@ import { Input, Select } from "@chakra-ui/react";
 import OurLocationItem from "../../../../Components/OurLocationItem/OurLocationItem";
 import locations from "../../../../LocationsData/LoacationData";
 import { useForm } from "react-hook-form";
+import moment from "moment";
+import useAxiosSecure from "../../../../hook/useAxiosSecure/useAxiosSecure";
+import swal from "sweetalert";
+import useAuth from "../../../../hook/useAuth/useAuth";
 
 const Reservation = () => {
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
+
+  const [axiosSecure] = useAxiosSecure();
+  const { user } = useAuth();
 
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
 
   const handleBookTable = (item) => {
     const { email, guest, name, phone } = item;
+    const formateDate = moment(date).format("L");
+    const formateTime = moment(time).format("LT");
     const newItem = {
-      date,
+      name,
+      email,
+      userEmail: user?.email,
+      phone: parseInt(phone),
+      guest,
+      date: formateDate,
+      time: formateTime,
     };
+
+    axiosSecure.post("/user-reservation", newItem).then((res) => {
+      if (res.data.insertedId) {
+        reset();
+        setDate(null);
+        setTime(null);
+        swal("Booking Add SuccessFull", "", "success");
+      }
+    });
   };
 
   return (
