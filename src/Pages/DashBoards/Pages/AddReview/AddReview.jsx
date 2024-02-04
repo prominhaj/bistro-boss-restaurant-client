@@ -5,10 +5,43 @@ import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import { Textarea } from "@chakra-ui/react";
 import { FaSpaceShuttle } from "react-icons/fa";
+import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../../../hook/useAxiosSecure/useAxiosSecure";
+import { toast } from "react-toastify";
+import swal from "sweetalert";
 
 const AddReview = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const [axiosSecure] = useAxiosSecure();
   const [rating, setRating] = useState(0);
 
+  const handleAddReview = (item) => {
+    if (!rating) {
+      toast.error("Places Provide Any Rating");
+    } else {
+      const { recipe, suggestion, details } = item;
+      const newItem = {
+        name: recipe,
+        suggestion,
+        details,
+        rating,
+      };
+      axiosSecure.post("/user-review", newItem).then((res) => {
+        if (res.data.insertedId) {
+          reset();
+          setRating(0);
+          swal("Review Sent SuccessFull", "", "success");
+        }
+      });
+    }
+  };
   return (
     <>
       {/* Helmet */}
@@ -22,12 +55,15 @@ const AddReview = () => {
         hading="GIVE A REVIEW..."
       />
       <section className="py-10 lg:px-[80px]">
-        <form className="bg-zinc-100 px-[30px] md:px-[100px] py-[30px] md:py-[50px]">
+        <form
+          onSubmit={handleSubmit(handleAddReview)}
+          className="bg-zinc-100 px-[30px] md:px-[100px] py-[30px] md:py-[50px]"
+        >
           <div className="text-center">
             <h2 className="text-neutral-900 text-[32px] font-medium font-['Cinzel']">
               Rate US!
             </h2>
-            <div className="flex justify-center pt-5 items-center">
+            <div className="flex items-center justify-center pt-5">
               <Rating
                 style={{ maxWidth: 180 }}
                 value={rating}
@@ -36,7 +72,7 @@ const AddReview = () => {
               />
             </div>
           </div>
-          <div className="pt-10 flex flex-col gap-6">
+          <div className="flex flex-col gap-6 pt-10">
             <div>
               <label
                 htmlFor="recipe"
@@ -45,12 +81,15 @@ const AddReview = () => {
                 Which recipe you liked most?
               </label>
               <input
-                name="recipe"
+                {...register("recipe", { required: true })}
                 id="recipe"
-                className="border py-3 border-gray-300 text-xl px-4 text-black w-full rounded"
+                className="w-full px-4 py-3 text-xl text-black border border-gray-300 rounded"
                 type="text"
                 placeholder="Recipe you liked most"
               />
+              {errors.recipe && (
+                <span className="text-red-600">Recipe is Required</span>
+              )}
             </div>
             <div>
               <label
@@ -60,12 +99,15 @@ const AddReview = () => {
                 Do you have any suggestion for us?
               </label>
               <input
-                name="suggestion"
+                {...register("suggestion", { required: true })}
                 id="suggestion"
-                className="border py-3 border-gray-300 text-xl px-4 text-black w-full rounded"
+                className="w-full px-4 py-3 text-xl text-black border border-gray-300 rounded"
                 type="text"
-                placeholder="Sugggestion"
+                placeholder="Suggestion"
               />
+              {errors.suggestion && (
+                <span className="text-red-600">Suggestion is Required</span>
+              )}
             </div>
             <div>
               <label
@@ -75,12 +117,15 @@ const AddReview = () => {
                 Kindly express your care in a short way.
               </label>
               <Textarea
-                name="details"
-                className="border py-3 border-gray-300 text-xl px-4 text-black w-full rounded"
+                {...register("details", { required: true })}
+                className="w-full px-4 py-3 text-xl text-black border border-gray-300 rounded"
                 rows={6}
                 id="details"
                 placeholder="Review in detail"
               />
+              {errors.details && (
+                <span className="text-red-600">Details is Required</span>
+              )}
             </div>
             <div>
               <button
