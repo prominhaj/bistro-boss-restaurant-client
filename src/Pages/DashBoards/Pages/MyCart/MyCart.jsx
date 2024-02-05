@@ -16,6 +16,8 @@ const MyCart = () => {
     return accumulator + currentValue.price;
   }, 0);
 
+  const total = parseFloat(totalPrice.toFixed(2));
+
   const handleDelete = (item) => {
     swal({
       title: "Are you sure?",
@@ -25,9 +27,12 @@ const MyCart = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/carts/${item._id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://bistro-boss-server-five-black.vercel.app/carts/${item._id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.acknowledged) {
@@ -107,7 +112,7 @@ const MyCart = () => {
                     Total orders: {cart.length}
                   </h2>
                   <h2 className="text-neutral-900 text-[20px] sm:text-[25px] md:text-[32px] font-bold font-['Cinzel']">
-                    total price: ${totalPrice}
+                    total price: ${total}
                   </h2>
                   <Link
                     to="/dashboard/payment"
