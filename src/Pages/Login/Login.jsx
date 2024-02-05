@@ -69,7 +69,7 @@ const Login = () => {
     googleLogin()
       .then((result) => {
         const user = result.user;
-        fetch("https://bistro-boss-server-five-black.vercel.app/users", {
+        fetch("http://localhost:5000/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -94,7 +94,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        fetch("https://bistro-boss-server-five-black.vercel.app/users", {
+        fetch("http://localhost:5000/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

@@ -16,7 +16,7 @@ const ManageItems = () => {
   } = useQuery({
     queryKey: ["menu"],
     queryFn: async () => {
-      const res = await fetch("https://bistro-boss-server-five-black.vercel.app/menu");
+      const res = await fetch("http://localhost:5000/menu");
       return res.json();
     },
   });

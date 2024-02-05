@@ -6,7 +6,7 @@ const useShopMenu = (page, category, limit) => {
 
   useEffect(() => {
     fetch(
-      `https://bistro-boss-server-five-black.vercel.app/shopMenu?page=${page}&&category=${category}&&limit=${limit}`
+      `http://localhost:5000/shopMenu?page=${page}&&category=${category}&&limit=${limit}`
     )
       .then((res) => res.json())
       .then((data) => {

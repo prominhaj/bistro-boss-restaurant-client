@@ -7,12 +7,12 @@ const useCart = () => {
   const { user, loading } = useAuth();
   const [axiosSecure] = useAxiosSecure();
 
-  const { data: cart = [], refetch } = useQuery({
+  const { data: cart = [], refetch, isLoading: cartLoading } = useQuery({
     queryKey: ["carts", user?.email],
     enabled: !loading,
     // queryFn: async () => {
     //   const res = await fetch(
-    //     `https://bistro-boss-server-five-black.vercel.app/carts?email=${user?.email}`,
+    //     `http://localhost:5000/carts?email=${user?.email}`,
     //     {
     //       method: "GET",
     //       headers: {
@@ -28,7 +28,7 @@ const useCart = () => {
     },
   });
 
-  return [cart, refetch];
+  return [cart, refetch, cartLoading];
 };
 
 export default useCart;

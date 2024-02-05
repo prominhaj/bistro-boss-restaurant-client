@@ -7,7 +7,7 @@ const useMenu = (category, limit) => {
   useEffect(() => {
     setLoading(true)
     fetch(
-      `https://bistro-boss-server-five-black.vercel.app/menuCategory?${category && `category=${category}`}&&${
+      `http://localhost:5000/menuCategory?${category && `category=${category}`}&&${
         limit && `limit=${limit}`
       }`
     )

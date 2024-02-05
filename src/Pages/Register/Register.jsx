@@ -33,7 +33,7 @@ const Register = () => {
     createAccount(data.email, data.password)
       .then(() => {
         updateName(data.name);
-        fetch("https://bistro-boss-server-five-black.vercel.app/users", {
+        fetch("http://localhost:5000/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

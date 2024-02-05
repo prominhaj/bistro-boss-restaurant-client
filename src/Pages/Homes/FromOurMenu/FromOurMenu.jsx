@@ -9,7 +9,7 @@ const FromOurMenu = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch(`https://bistro-boss-server-five-black.vercel.app/allMenu?category=popular&&limit=6`)
+    fetch(`http://localhost:5000/allMenu?category=popular&&limit=6`)
       .then((res) => res.json())
       .then((data) => {
         setAllMenu(data);
@@ -18,7 +18,7 @@ const FromOurMenu = () => {
   }, []);
 
   const viewFullMenu = () => {
-    fetch(`https://bistro-boss-server-five-black.vercel.app/allMenu?limit=${limit}`)
+    fetch(`http://localhost:5000/allMenu?limit=${limit}`)
       .then((res) => res.json())
       .then((data) => {
         setAllMenu(data);

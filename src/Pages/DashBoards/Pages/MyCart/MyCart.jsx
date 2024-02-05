@@ -8,15 +8,16 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { Button } from "primereact/button";
+import { Spinner } from "@chakra-ui/react";
 
 const MyCart = () => {
-  const [cart, refetch] = useCart();
+  const [cart, refetch, cartLoading] = useCart();
 
   const totalPrice = cart?.reduce((accumulator, currentValue) => {
     return accumulator + currentValue.price;
   }, 0);
 
-  const total = parseFloat(totalPrice.toFixed(2));
+  const total = parseFloat(totalPrice).toFixed(2);
 
   const handleDelete = (item) => {
     swal({
@@ -28,7 +29,7 @@ const MyCart = () => {
     }).then((willDelete) => {
       if (willDelete) {
         fetch(
-          `https://bistro-boss-server-five-black.vercel.app/carts/${item._id}`,
+          `http://localhost:5000/carts/${item._id}`,
           {
             method: "DELETE",
           }
@@ -102,6 +103,12 @@ const MyCart = () => {
 
       <SectionTitle subHading="My Cart" hading="WANNA ADD MORE?" />
 
+      {cartLoading && (
+        <div className="mt-5 text-center">
+          <Spinner />
+        </div>
+      )}
+
       <section>
         {cart.length > 0 ? (
           <>
@@ -109,7 +116,7 @@ const MyCart = () => {
               <div className="bg-[#F6F6F6] p-10 rounded">
                 <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
                   <h2 className="text-neutral-900 text-[20px] sm:text-[25px] md:text-[32px] font-bold font-['Cinzel']">
-                    Total orders: {cart.length}
+                    Total orders: {cart?.length}
                   </h2>
                   <h2 className="text-neutral-900 text-[20px] sm:text-[25px] md:text-[32px] font-bold font-['Cinzel']">
                     total price: ${total}
