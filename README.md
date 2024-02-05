@@ -1,5 +1,7 @@
 # The Bistro Boss Restaurant Website
 
+Server Site Github Link: https://github.com/pro-minhaj/bistro-boss-restaurant-server
+
 A brief description of your project or application.
 
 ## Table of Contents
@@ -53,24 +55,26 @@ To install and run this project locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/prorakib99/bistro-boss-restaurant-client.git
+   git clone https://github.com/pro-minhaj/bistro-boss-restaurant-client.git
    ```
-   
+
 2. Navigate to the project directory:
 
-    ```bash
-    cd bistro-boss-restaurant-client
-    ```
+   ```bash
+   cd bistro-boss-restaurant-client
+   ```
+
 3. Install the dependencies:
 
-    ```bash
-    npm install
-    ```
-5. Install the dependencies:
+   ```bash
+   npm install
+   ```
+
+4. Install the dependencies:
 
    ```bash
     npm run dev
-    ```
+   ```
 
 ## Usage
 

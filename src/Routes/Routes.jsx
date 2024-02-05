@@ -167,7 +167,7 @@ export const router = createBrowserRouter([
           </PrivateAdmin>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/menu-item/${params.id}`),
+          fetch(`https://bistro-boss-server-five-black.vercel.app/menu-item/${params.id}`),
       },
     ],
   },

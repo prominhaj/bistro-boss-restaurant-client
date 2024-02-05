@@ -12,7 +12,7 @@ const ProductCard = ({ item }) => {
 
   const handleAddToCart = (item) => {
     if (user?.email) {
-      fetch(`http://localhost:5000/carts?email=${user?.email}`, {
+      fetch(`https://bistro-boss-server-five-black.vercel.app/carts?email=${user?.email}`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

@@ -8,7 +8,7 @@ const useAxiosSecure = () => {
   const { logOut } = useAuth();
 
   const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: "https://bistro-boss-server-five-black.vercel.app",
   });
 
   if (token) {

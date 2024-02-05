@@ -12,7 +12,7 @@ const ShopCategory = ({ category }) => {
   const [products, loading] = useShopMenu(currentPage, category, limit);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/totalProducts?category=${category}`)
+    fetch(`https://bistro-boss-server-five-black.vercel.app/totalProducts?category=${category}`)
       .then((res) => res.json())
       .then((data) => setTotal(data.result));
   }, [category]);

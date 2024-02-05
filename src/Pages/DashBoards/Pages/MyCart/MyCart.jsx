@@ -29,7 +29,7 @@ const MyCart = () => {
     }).then((willDelete) => {
       if (willDelete) {
         fetch(
-          `http://localhost:5000/carts/${item._id}`,
+          `https://bistro-boss-server-five-black.vercel.app/carts/${item._id}`,
           {
             method: "DELETE",
           }

@@ -31,7 +31,7 @@ const AllUsers = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/users/admin/${item._id}`, {
+        fetch(`https://bistro-boss-server-five-black.vercel.app/users/admin/${item._id}`, {
           method: "PATCH",
         })
           .then((res) => res.json())
